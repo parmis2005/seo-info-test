@@ -7,7 +7,6 @@ import {
   Zap,
   TrendingUp,
   Target,
-  ShieldCheck,
   Coins,
   Smartphone,
   Lock,
@@ -50,7 +49,7 @@ const FACTORS = [
   {
     Icon: Zap,
     title: "Core Web Vitals",
-    text: "Ladezeit, Interaktivität und visuelle Stabilität sind seit 2021 offizielle Google-Signale.",
+    text: "Ladezeit, Interaktivität und visuelle Stabilität sind seit 2021 Teil des Page-Experience-Systems; INP ergänzt die Messung seit 2024.",
   },
 ];
 
@@ -319,10 +318,10 @@ export default function Page() {
         <div style={{ maxWidth: 1140, margin: "0 auto", padding: "80px 32px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40, textAlign: "center" }}>
             {[
-              { v: "93 %",     l: "aller Online-Erlebnisse starten mit Google" },
-              { v: "75 %",     l: "der Nutzer klicken nie auf Seite 2" },
-              { v: "68 %",     l: "des Traffics ist organisch" },
-              { v: "3,5 Mrd.", l: "Suchanfragen täglich" },
+              { v: "5+ Bio.", l: "Suchanfragen pro Jahr bei Google" },
+              { v: "Seite 1", l: "erhält den Großteil der Klicks" },
+              { v: "Organisch", l: "bleibt ein zentraler Traffic-Kanal" },
+              { v: "Google", l: "ist oft der erste Einstieg in die Suche" },
             ].map((s, i) => (
               <div key={i}>
                 <div style={{
@@ -351,7 +350,7 @@ export default function Page() {
                 SEO (Search Engine Optimization) sorgt dafür, dass deine Webseite bei relevanten Suchanfragen ganz oben erscheint – dauerhaft und ohne Klickkosten.
               </p>
               <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75 }}>
-                Die ersten 3 organischen Ergebnisse erhalten über <strong style={{ color: C.text }}>50 % aller Klicks</strong>. Seite 2 ist quasi unsichtbar.
+                Die ersten organischen Ergebnisse erhalten den Großteil der Klicks. Seite 2 bekommt deutlich weniger Aufmerksamkeit.
               </p>
             </div>
 
@@ -379,7 +378,7 @@ export default function Page() {
               Top Ranking-Faktoren
             </h2>
             <p style={{ fontSize: 17, color: C.muted, maxWidth: 480, margin: "0 auto" }}>
-              Google bewertet über 200 Signale. Diese drei zählen am meisten.
+              Google nutzt viele Signale. Diese drei Bereiche sind besonders wichtig.
             </p>
           </div>
 
@@ -445,7 +444,7 @@ export default function Page() {
               Autorität, die Google überzeugt.
             </h2>
             <p style={{ fontSize: 17, color: C.muted, maxWidth: 480, margin: "0 auto" }}>
-              Backlinks sind digitale Empfehlungen. Ein Link von Spiegel.de wiegt mehr als 1.000 Links von unbekannten Seiten.
+              Backlinks sind digitale Empfehlungen. Links von relevanten, vertrauenswürdigen Seiten können deutlich mehr Gewicht haben als viele irrelevante Links.
             </p>
           </div>
 
