@@ -392,7 +392,11 @@ export default function Page() {
             ))}
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
+          <div style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+          }}>
             {SECONDARY_FACTORS.map(({ Icon, label }, i) => (
               <div key={i} style={{
                 display: "flex", alignItems: "center", gap: 12,
