@@ -7,6 +7,7 @@ import {
   Zap,
   TrendingUp,
   Target,
+  ShieldCheck,
   Coins,
   Smartphone,
   Lock,
@@ -81,6 +82,13 @@ const OFFPAGE = [
   { Icon: Trophy,    title: "Linkbuilding",            text: "Gewinne natürliche Backlinks durch herausragenden Content, Gastbeiträge und strategische Partnerschaften." },
   { Icon: Megaphone, title: "Brand Mentions",          text: "Erwähnungen deiner Marke ohne direkten Link werden von Google als Autoritätssignal erkannt." },
   { Icon: Star,      title: "Google Business Profile", text: "Für lokale SEO essentiell. Bewertungen und regelmäßige Beiträge steigern lokale Rankings." },
+];
+
+const PRACTICE = [
+  { Icon: ShieldCheck, title: "SEO-Audit & Prioritäten", text: "Zuerst wird der Ist-Zustand geprüft: Technik, Inhalte, Struktur und die schnellsten Hebel für bessere Rankings." },
+  { Icon: Globe,       title: "Lokale Sichtbarkeit", text: "Für regionale Unternehmen sind Google Business Profile, Karten-Ergebnisse und lokale Suchanfragen entscheidend." },
+  { Icon: Search,      title: "Google + KI-Suchen", text: "Gute Inhalte sollen nicht nur für Google lesbar sein, sondern auch für KI-Suchen klar strukturiert und verständlich bleiben." },
+  { Icon: BarChart2,   title: "Tracking & Reporting", text: "Erfolg wird über klare Kennzahlen gemessen: Rankings, Klicks, Leads und regelmäßige Updates statt Bauchgefühl." },
 ];
 
 const PROCESS = [
@@ -456,6 +464,31 @@ export default function Page() {
             {OFFPAGE.map(({ Icon, title, text }, i) => (
               <Card key={i}>
                 <IconBox Icon={Icon} color="#06b6d4" />
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
+                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRAXIS ─────────────────────────────────────────────────────── */}
+      <section style={{ borderTop: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
+          <div style={{ textAlign: "center", marginBottom: 72 }}>
+            <div style={{ marginBottom: 20 }}><Tag color="#22c55e">SEO in der Praxis</Tag></div>
+            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
+              Was professionelle SEO zusätzlich braucht.
+            </h2>
+            <p style={{ fontSize: 17, color: C.muted, maxWidth: 560, margin: "0 auto" }}>
+              Gute Agenturseiten setzen nicht nur auf Grundlagen, sondern auf Analyse, lokale Sichtbarkeit, KI-Fähigkeit und messbare Ergebnisse.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
+            {PRACTICE.map(({ Icon, title, text }, i) => (
+              <Card key={i}>
+                <IconBox Icon={Icon} color="#22c55e" />
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
                 <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
               </Card>
