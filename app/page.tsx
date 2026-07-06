@@ -91,6 +91,13 @@ const PRACTICE = [
   { Icon: BarChart2,   title: "Tracking & Reporting", text: "Erfolg wird über klare Kennzahlen gemessen: Rankings, Klicks, Leads und regelmäßige Updates statt Bauchgefühl." },
 ];
 
+const ERRORS = [
+  { Icon: Search, title: "Suchintention ignorieren", text: "Ein Keyword hilft nur, wenn der Inhalt exakt zu der Frage passt, die Nutzer wirklich beantworten wollen." },
+  { Icon: PenLine, title: "Zu wenig Tiefe", text: "Oberflächliche Texte ranken selten gut. Lieber wenige starke Seiten als viele schwache." },
+  { Icon: Globe, title: "Lokale Signale vergessen", text: "Für lokale Unternehmen sind Adresse, Öffnungszeiten, Bewertungen und Google Business Profile wichtig." },
+  { Icon: BarChart2, title: "Nicht messen", text: "Ohne Tracking bleiben Verbesserungen unsichtbar. Rankings, Klicks und Anfragen sollten regelmäßig geprüft werden." },
+];
+
 const PROCESS = [
   { n: "01", title: "Analyse",   text: "Keywords, Wettbewerb und technischen Status deiner Domain prüfen." },
   { n: "02", title: "Technik",   text: "Schnelle Ladezeit, Mobile-Optimierung und saubere Crawlbarkeit sicherstellen." },
@@ -109,6 +116,8 @@ const FAQ = [
   { q: "Was ist der Unterschied zwischen SEO und SEA?", a: "SEO erzeugt organischen Traffic ohne direkte Klickkosten. SEA sind bezahlte Google Ads – sofort sichtbar, aber jeder Klick kostet." },
   { q: "Wie viele Keywords pro Seite?",                 a: "Eine Seite, ein Haupt-Keyword plus 3–5 semantisch verwandte Begriffe. Fokussiere dich auf Themen, nicht einzelne Wörter." },
   { q: "Sind Backlinks wirklich so wichtig?",           a: "Für kompetitive Keywords fast unerlässlich. Bei Long-Tail-Suchen kann sehr guter Content auch ohne viele Backlinks gut ranken." },
+  { q: "Wie oft sollte man Inhalte aktualisieren?",     a: "Immer dann, wenn sich Suchintention, Wettbewerb oder eigene Leistungen ändern. Bei wichtigen Seiten lohnt sich ein regelmäßiger Check alle paar Monate." },
+  { q: "Was ist wichtiger: Technik, Content oder Links?", a: "Für die meisten Websites ist die Reihenfolge: saubere Technik, starke Inhalte, dann Autorität durch Links und Erwähnungen." },
 ];
 
 /* ──────────────────────── helper components ─────────────────────────────── */
@@ -360,6 +369,9 @@ export default function Page() {
               <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75 }}>
                 Die ersten organischen Ergebnisse erhalten den Großteil der Klicks. Seite 2 bekommt deutlich weniger Aufmerksamkeit.
               </p>
+              <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75, marginTop: 20 }}>
+                Gute SEO verbindet technische Basis, klare Inhalte und nachvollziehbare Prioritäten. So entsteht Sichtbarkeit, die nicht nur gefunden wird, sondern auch zu Anfragen führt.
+              </p>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -489,6 +501,31 @@ export default function Page() {
             {PRACTICE.map(({ Icon, title, text }, i) => (
               <Card key={i}>
                 <IconBox Icon={Icon} color="#22c55e" />
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
+                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEHLER ─────────────────────────────────────────────────────── */}
+      <section style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
+        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
+          <div style={{ textAlign: "center", marginBottom: 72 }}>
+            <div style={{ marginBottom: 20 }}><Tag color="#f97316">Häufige Fehler</Tag></div>
+            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
+              Was gute SEO unnötig schwächt.
+            </h2>
+            <p style={{ fontSize: 17, color: C.muted, maxWidth: 560, margin: "0 auto" }}>
+              Die meisten SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Inhalte, fehlende Prioritäten oder zu wenig Messung.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
+            {ERRORS.map(({ Icon, title, text }, i) => (
+              <Card key={i}>
+                <IconBox Icon={Icon} color="#f97316" />
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
                 <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
               </Card>
