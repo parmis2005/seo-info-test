@@ -301,7 +301,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="Ranking-Signale"
           title="Die Faktoren hinter guten Google-Positionen."
-          text="Google bewertet viele Signale. Diese Bereiche entscheiden besonders oft darüber, ob eine Seite sichtbar wird."
+          text="Google bewertet technische Qualität, hilfreiche Inhalte, Nutzererfahrung und Vertrauen. Wenn diese Bereiche sauber zusammenspielen, steigt die Chance, dass eine Seite sichtbar wird und relevante Besucher erreicht."
         />
         <div className="service-grid">
           {FACTORS.map(({ Icon, title, text }) => (
@@ -348,7 +348,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="Off-Page SEO"
           title="Autorität, die außerhalb deiner Website entsteht."
-          text="Vertrauen entsteht durch Empfehlungen, Erwähnungen und lokale Signale, die zu deinem Angebot passen."
+          text="Vertrauen entsteht nicht nur auf deiner eigenen Website. Auch Empfehlungen, Erwähnungen, Bewertungen und lokale Signale zeigen Suchmaschinen, dass dein Angebot relevant und glaubwürdig ist."
         />
         <div className="service-grid">
           {OFFPAGE.map(({ Icon, title, text }) => (
@@ -361,7 +361,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section left-heading-section">
         <SectionHeading
           eyebrow="SEO in der Praxis"
           title="Ein System aus Analyse, Struktur und messbarer Umsetzung."
