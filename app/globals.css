@@ -519,11 +519,11 @@ p {
   display: grid;
 }
 .hero-branding {
-  gap: 12px;
+  gap: 10px;
   width: fit-content;
   max-width: 100%;
-  margin-bottom: 28px;
-  justify-items: center;
+  margin-bottom: 32px;
+  justify-items: start;
   display: grid;
 }
 .hero-wordmark {
@@ -531,7 +531,7 @@ p {
 }
 .hero-tagline {
   color: var(--cyan);
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   font-size: 1.02rem;
   font-weight: 850;
@@ -540,7 +540,7 @@ p {
 .hero-statement {
   gap: 12px;
   width: 100%;
-  padding-left: 24px;
+  padding-left: 0;
   display: grid;
   position: relative;
 }
@@ -550,7 +550,7 @@ p {
   border-radius: 999px;
   width: 2px;
   position: absolute;
-  inset: 6px auto 8px 0;
+  inset: 6px auto 8px -22px;
   box-shadow: 0 0 18px #57dbff3d;
 }
 .eyebrow {
@@ -1316,6 +1316,12 @@ p {
     justify-items: center;
     max-width: 980px;
     padding-left: 0;
+  }
+  .hero-branding {
+    justify-items: center;
+  }
+  .hero-tagline {
+    text-align: center;
   }
   .hero-statement:before {
     display: none;
