@@ -1,705 +1,487 @@
-import type { CSSProperties, ElementType, ReactNode } from "react";
 import {
-  Link2,
-  PenLine,
-  Zap,
-  TrendingUp,
-  Target,
-  ShieldCheck,
-  Coins,
-  Smartphone,
-  Lock,
-  Clock,
-  Layers,
-  RefreshCw,
-  Trophy,
-  Megaphone,
-  Star,
-  Search,
-  BarChart2,
-  Globe,
   ArrowRight,
+  BarChart2,
+  Check,
+  Clock,
+  Coins,
+  Globe,
+  Layers,
+  Link2,
+  Lock,
+  Megaphone,
+  PenLine,
   Plus,
+  RefreshCw,
+  Search,
+  ShieldCheck,
+  Smartphone,
+  Star,
+  Target,
+  TrendingUp,
+  Trophy,
+  Zap,
 } from "lucide-react";
 
-/* ─────────────────────────── design tokens ──────────────────────────────── */
-const C = {
-  bg:      "#09090f",
-  surface: "#0e0e1a",
-  border:  "rgba(255,255,255,0.07)",
-  muted:   "rgba(255,255,255,0.38)",
-  accent:  "#6366f1",
-  accent2: "#8b5cf6",
-  text:    "#e8e8f0",
-};
+const NAV = ["Grundlagen", "Faktoren", "Optimierung", "Prozess", "Tools", "FAQ"];
 
-/* ──────────────────────────────── data ─────────────────────────────────── */
 const FACTORS = [
   {
     Icon: Link2,
     title: "Backlinks",
-    text: "Links von anderen Webseiten sind Googles stärkstes Vertrauenssignal. Qualität schlägt Quantität.",
+    text: "Links von relevanten Webseiten sind starke Vertrauenssignale. Qualität, Kontext und Glaubwürdigkeit zählen mehr als Masse.",
   },
   {
     Icon: PenLine,
     title: "Content-Qualität",
-    text: "Einzigartiger, tiefgehender Content der die Suchabsicht des Nutzers vollständig erfüllt.",
+    text: "Inhalte müssen Suchintention, Tiefe und klare Struktur verbinden, damit Nutzer und Suchmaschinen den Wert sofort erkennen.",
   },
   {
     Icon: Zap,
     title: "Core Web Vitals",
-    text: "Ladezeit, Interaktivität und visuelle Stabilität sind seit 2021 Teil des Page-Experience-Systems; INP ergänzt die Messung seit 2024.",
+    text: "Ladezeit, Interaktivität und visuelle Stabilität entscheiden mit darüber, ob eine Seite professionell wirkt und sauber ranken kann.",
   },
 ];
 
 const BASICS = [
-  { Icon: TrendingUp, title: "Nachhaltiger Traffic",  text: "Wächst langfristig ohne laufende Werbekosten." },
-  { Icon: Target,     title: "Zielgerichtete Nutzer", text: "Du erreichst Menschen, die aktiv nach dir suchen." },
-  { Icon: Trophy,     title: "Vertrauen & Autorität", text: "Hohe Rankings stärken Glaubwürdigkeit und Marke." },
-  { Icon: Coins,      title: "Bester ROI",            text: "Langfristig der günstigste Marketingkanal." },
+  { Icon: TrendingUp, title: "Nachhaltiger Traffic", text: "Sichtbarkeit wächst langfristig, ohne dass jeder Klick bezahlt werden muss." },
+  { Icon: Target, title: "Suchintention treffen", text: "Gute SEO beantwortet exakt die Frage, mit der Nutzer auf Google starten." },
+  { Icon: Trophy, title: "Vertrauen aufbauen", text: "Klare Inhalte, Technik und Signale machen aus Rankings echte Autorität." },
+  { Icon: Coins, title: "Besserer ROI", text: "Organischer Traffic kann über Monate und Jahre wirtschaftlich arbeiten." },
 ];
 
 const SECONDARY_FACTORS = [
   { Icon: Smartphone, label: "Mobile-First" },
-  { Icon: Lock,       label: "HTTPS / Sicherheit" },
-  { Icon: Target,     label: "Keyword-Relevanz" },
-  { Icon: Clock,      label: "Verweildauer / UX" },
-  { Icon: Layers,     label: "Strukturierte Daten" },
-  { Icon: RefreshCw,  label: "Aktualität des Contents" },
+  { Icon: Lock, label: "HTTPS / Sicherheit" },
+  { Icon: Target, label: "Keyword-Relevanz" },
+  { Icon: Clock, label: "UX & Verweildauer" },
+  { Icon: Layers, label: "Strukturierte Daten" },
+  { Icon: RefreshCw, label: "Aktualität" },
 ];
 
 const ONPAGE = [
-  { n: "01", title: "Title Tag",         text: "50–60 Zeichen, Haupt-Keyword an erster Stelle." },
-  { n: "02", title: "Meta-Description",  text: "120–160 Zeichen, klarer Nutzen, überzeugender CTA." },
-  { n: "03", title: "Überschriften",     text: "Nur ein H1. Keywords natürlich in H2/H3 einbauen." },
-  { n: "04", title: "Interne Links",     text: "Verteile Link-Autorität und führe Nutzer logisch durch die Seite." },
-  { n: "05", title: "Bilder & Alt-Texte", text: "WebP-Format, beschreibende Alt-Texte mit Keywords, sprechende Dateinamen." },
+  { n: "01", title: "Title Tag", text: "50 bis 60 Zeichen, klares Hauptthema und ein Nutzenversprechen." },
+  { n: "02", title: "Meta-Description", text: "120 bis 160 Zeichen, verständlicher Mehrwert und ein konkreter Klickanreiz." },
+  { n: "03", title: "Überschriften", text: "Eine klare H1, logisch gegliederte H2/H3 und natürliche Keyword-Abdeckung." },
+  { n: "04", title: "Interne Links", text: "Wichtige Seiten werden logisch verbunden und Nutzer werden gezielt weitergeführt." },
+  { n: "05", title: "Bilder & Alt-Texte", text: "Komprimierte Medien, sprechende Dateinamen und beschreibende Alternativtexte." },
 ];
 
 const OFFPAGE = [
-  { Icon: Trophy,    title: "Linkbuilding",            text: "Gewinne natürliche Backlinks durch herausragenden Content, Gastbeiträge und strategische Partnerschaften." },
-  { Icon: Megaphone, title: "Brand Mentions",          text: "Erwähnungen deiner Marke ohne direkten Link werden von Google als Autoritätssignal erkannt." },
-  { Icon: Star,      title: "Google Business Profile", text: "Für lokale SEO essentiell. Bewertungen und regelmäßige Beiträge steigern lokale Rankings." },
+  { Icon: Trophy, title: "Linkbuilding", text: "Natürliche Empfehlungen entstehen durch starke Inhalte, Kooperationen und relevante Erwähnungen." },
+  { Icon: Megaphone, title: "Brand Mentions", text: "Nennungen deiner Marke schaffen Vertrauen, auch wenn nicht jede Erwähnung direkt verlinkt." },
+  { Icon: Star, title: "Google Business Profile", text: "Für lokale Suche sind Bewertungen, Öffnungszeiten, Leistungen und Beiträge entscheidend." },
 ];
 
 const PRACTICE = [
-  { Icon: ShieldCheck, title: "SEO-Audit & Prioritäten", text: "Zuerst wird der Ist-Zustand geprüft: Technik, Inhalte, Struktur und die schnellsten Hebel für bessere Rankings." },
-  { Icon: Globe,       title: "Lokale Sichtbarkeit", text: "Für regionale Unternehmen sind Google Business Profile, Karten-Ergebnisse und lokale Suchanfragen entscheidend." },
-  { Icon: Search,      title: "Google + KI-Suchen", text: "Gute Inhalte sollen nicht nur für Google lesbar sein, sondern auch für KI-Suchen klar strukturiert und verständlich bleiben." },
-  { Icon: BarChart2,   title: "Tracking & Reporting", text: "Erfolg wird über klare Kennzahlen gemessen: Rankings, Klicks, Leads und regelmäßige Updates statt Bauchgefühl." },
+  { Icon: ShieldCheck, title: "SEO-Audit", text: "Technik, Inhalte, Struktur und Wettbewerb werden priorisiert statt isoliert betrachtet." },
+  { Icon: Globe, title: "Lokale Sichtbarkeit", text: "Regionale Suchbegriffe, Karten-Ergebnisse und Standortsignale werden gezielt aufgebaut." },
+  { Icon: Search, title: "Google + KI-Suchen", text: "Inhalte bleiben klar, modular und verständlich für klassische Suche und KI-Antwortsysteme." },
+  { Icon: BarChart2, title: "Tracking", text: "Rankings, Klicks und Anfragen werden messbar, damit Optimierung nicht auf Bauchgefühl basiert." },
 ];
 
 const ERRORS = [
-  { Icon: Search, title: "Suchintention ignorieren", text: "Ein Keyword hilft nur, wenn der Inhalt exakt zu der Frage passt, die Nutzer wirklich beantworten wollen." },
-  { Icon: PenLine, title: "Zu wenig Tiefe", text: "Oberflächliche Texte ranken selten gut. Lieber wenige starke Seiten als viele schwache." },
-  { Icon: Globe, title: "Lokale Signale vergessen", text: "Für lokale Unternehmen sind Adresse, Öffnungszeiten, Bewertungen und Google Business Profile wichtig." },
-  { Icon: BarChart2, title: "Nicht messen", text: "Ohne Tracking bleiben Verbesserungen unsichtbar. Rankings, Klicks und Anfragen sollten regelmäßig geprüft werden." },
+  { Icon: Search, title: "Suchintention ignorieren", text: "Ein Keyword reicht nicht, wenn die Seite die eigentliche Nutzerfrage verfehlt." },
+  { Icon: PenLine, title: "Zu wenig Tiefe", text: "Oberflächliche Texte verlieren gegen Seiten, die ein Thema vollständig erklären." },
+  { Icon: Globe, title: "Lokale Signale vergessen", text: "Adresse, Bewertungen und lokale Inhalte entscheiden oft über regionale Sichtbarkeit." },
+  { Icon: BarChart2, title: "Nicht messen", text: "Ohne Daten bleiben Fortschritte unsichtbar und Prioritäten geraten durcheinander." },
 ];
 
 const PROCESS = [
-  { n: "01", title: "Analyse",   text: "Keywords, Wettbewerb und technischen Status deiner Domain prüfen." },
-  { n: "02", title: "Technik",   text: "Schnelle Ladezeit, Mobile-Optimierung und saubere Crawlbarkeit sicherstellen." },
-  { n: "03", title: "Content",   text: "Hochwertigen Content erstellen und bestehende Seiten optimieren." },
-  { n: "04", title: "Autorität", text: "Hochwertige Backlinks aufbauen und Rankings kontinuierlich überwachen." },
+  { n: "01", title: "Analyse", text: "Keywords, Wettbewerb, Technik und vorhandene Inhalte werden sauber bewertet." },
+  { n: "02", title: "Struktur", text: "Seitenarchitektur, interne Links und Suchintentionen werden geordnet." },
+  { n: "03", title: "Content", text: "Inhalte werden erweitert, geschärft und für Nutzerführung optimiert." },
+  { n: "04", title: "Autorität", text: "Relevante Signale, Backlinks und lokale Faktoren werden kontinuierlich aufgebaut." },
 ];
 
 const TOOLS = [
-  { Icon: Search,   name: "Google Search Console", tag: "Kostenlos",       text: "Direkte Daten von Google – Rankings, Fehler, Impressionen." },
-  { Icon: BarChart2, name: "Ahrefs",               tag: "Kostenpflichtig", text: "Backlink-Analyse und Keyword-Recherche auf Profi-Niveau." },
-  { Icon: Globe,    name: "PageSpeed Insights",    tag: "Kostenlos",       text: "Core Web Vitals deiner Seite messen und verbessern." },
+  { Icon: Search, name: "Google Search Console", tag: "Kostenlos", text: "Direkte Daten zu Klicks, Impressionen, Rankings und technischen Problemen." },
+  { Icon: BarChart2, name: "Ahrefs", tag: "Profi-Tool", text: "Backlinks, Content-Gaps und Wettbewerber lassen sich damit präzise analysieren." },
+  { Icon: Globe, name: "PageSpeed Insights", tag: "Kostenlos", text: "Core Web Vitals und konkrete Performance-Probleme werden sichtbar." },
 ];
 
 const FAQ = [
-  { q: "Wie lange dauert es bis SEO wirkt?",            a: "Erste Ergebnisse sind nach 3–6 Monaten sichtbar, signifikante Verbesserungen nach 6–12 Monaten – je nach Wettbewerb und Domain-Alter." },
-  { q: "Was ist der Unterschied zwischen SEO und SEA?", a: "SEO erzeugt organischen Traffic ohne direkte Klickkosten. SEA sind bezahlte Google Ads – sofort sichtbar, aber jeder Klick kostet." },
-  { q: "Wie viele Keywords pro Seite?",                 a: "Eine Seite, ein Haupt-Keyword plus 3–5 semantisch verwandte Begriffe. Fokussiere dich auf Themen, nicht einzelne Wörter." },
-  { q: "Sind Backlinks wirklich so wichtig?",           a: "Für kompetitive Keywords fast unerlässlich. Bei Long-Tail-Suchen kann sehr guter Content auch ohne viele Backlinks gut ranken." },
-  { q: "Wie oft sollte man Inhalte aktualisieren?",     a: "Immer dann, wenn sich Suchintention, Wettbewerb oder eigene Leistungen ändern. Bei wichtigen Seiten lohnt sich ein regelmäßiger Check alle paar Monate." },
-  { q: "Was ist wichtiger: Technik, Content oder Links?", a: "Für die meisten Websites ist die Reihenfolge: saubere Technik, starke Inhalte, dann Autorität durch Links und Erwähnungen." },
+  { q: "Wie lange dauert es, bis SEO wirkt?", a: "Erste Signale sind oft nach 3 bis 6 Monaten sichtbar. Spürbare Verbesserungen hängen von Wettbewerb, Technik, Content und Domain-Stärke ab." },
+  { q: "Was ist der Unterschied zwischen SEO und SEA?", a: "SEO baut organische Sichtbarkeit auf. SEA sind bezahlte Anzeigen, die sofort sichtbar sein können, aber pro Klick Budget verbrauchen." },
+  { q: "Wie viele Keywords braucht eine Seite?", a: "Eine Seite sollte ein klares Hauptthema haben und mehrere semantisch passende Begriffe natürlich abdecken." },
+  { q: "Sind Backlinks wirklich wichtig?", a: "Für wettbewerbsstarke Begriffe ja. Für Long-Tail- und lokale Suchen können Struktur, Inhalte und lokale Signale bereits viel bewegen." },
+  { q: "Wie oft sollte man Inhalte aktualisieren?", a: "Wichtige Seiten sollten regelmäßig geprüft werden, besonders wenn sich Angebote, Wettbewerb oder Suchintention verändern." },
+  { q: "Was ist wichtiger: Technik, Content oder Links?", a: "Die Basis ist saubere Technik. Danach folgen starke Inhalte und anschließend Autorität durch Links, Erwähnungen und Vertrauen." },
 ];
 
-/* ──────────────────────── helper components ─────────────────────────────── */
-function Tag({ children, color = C.accent }: { children: string; color?: string }) {
+function BrandMark() {
   return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", gap: 8,
-      background: `${color}18`, border: `1px solid ${color}35`,
-      color, padding: "5px 14px", borderRadius: 100,
-      fontSize: 12, fontWeight: 600, letterSpacing: "0.04em",
-    }}>
-      <span style={{ width: 6, height: 6, borderRadius: "50%", background: color, display: "inline-block" }} />
-      {children}
+    <span className="brand-mark" aria-hidden="true">
+      <Search size={20} strokeWidth={2.2} />
     </span>
   );
 }
 
-function Card({ children, style }: { children: ReactNode; style?: CSSProperties }) {
+function Eyebrow({ children }: { children: string }) {
+  return <p className="eyebrow">{children}</p>;
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  text,
+  compact = false,
+}: {
+  eyebrow: string;
+  title: string;
+  text?: string;
+  compact?: boolean;
+}) {
   return (
-    <div
-      className="seo-card"
-      style={{
-        background: C.surface,
-        border: `1px solid ${C.border}`,
-        borderRadius: 16,
-        padding: "36px 32px",
-        transition: "all 0.25s ease",
-        transform: "translateY(0)",
-        boxShadow: "none",
-        ...style,
-      }}
-    >
-      {children}
+    <div className={`section-heading${compact ? " compact" : ""}`}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2>{title}</h2>
+      {text ? <p>{text}</p> : null}
     </div>
   );
 }
 
-function IconBox({ Icon, color = C.accent }: { Icon: ElementType; color?: string }) {
-  return (
-    <div style={{
-      width: 44, height: 44, borderRadius: 10, flexShrink: 0,
-      background: `${color}14`, border: `1px solid ${color}28`,
-      display: "flex", alignItems: "center", justifyContent: "center",
-    }}>
-      <Icon size={20} color={color} strokeWidth={1.75} />
-    </div>
-  );
-}
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  return (
-    <details className="faq-item">
-      <summary>
-        <span style={{ fontSize: 17, fontWeight: 500 }}>{q}</span>
-        <span className="faq-plus">
-          <Plus size={14} color={C.muted} />
-        </span>
-      </summary>
-      <div className="faq-answer">
-        <p style={{ paddingTop: 16, fontSize: 15, lineHeight: 1.75, color: C.muted }}>{a}</p>
-      </div>
-    </details>
-  );
-}
-
-/* ──────────────────────────────── page ─────────────────────────────────── */
 export default function Page() {
-  const NAV = ["Grundlagen", "Faktoren", "Optimierung", "Prozess", "Tools", "FAQ"];
-
   return (
-    <div style={{ background: C.bg, minHeight: "100vh" }}>
+    <main>
+      <div className="ambient-grid" aria-hidden="true" />
 
-      {/* ── NAV ─────────────────────────────────────────────────────────── */}
-      <header style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: "rgba(9,9,15,0.8)", backdropFilter: "blur(18px)",
-        borderBottom: `1px solid ${C.border}`,
-      }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 32px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <div style={{
-              width: 32, height: 32, borderRadius: 9,
-              background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              <Search size={15} color="#fff" strokeWidth={2.5} />
-            </div>
-            <span style={{ fontWeight: 700, fontSize: 15, color: C.text }}>
-              SEO<span style={{ color: C.accent }}>Guide</span>
-            </span>
-          </a>
+      <header className="site-header">
+        <a className="brand" href="#top" aria-label="SEO Guide Startseite">
+          <BrandMark />
+          <span className="brand-copy">SEOGUIDE</span>
+        </a>
 
-          <nav style={{ display: "flex", gap: 4 }} className="hidden-mobile">
-            {NAV.map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} className="nav-link" style={{
-                padding: "6px 14px", borderRadius: 8, fontSize: 14,
-                color: C.muted, textDecoration: "none", transition: "color 0.2s",
-              }}
-              >{n}</a>
-            ))}
-          </nav>
+        <nav className="desktop-nav" aria-label="Hauptnavigation">
+          {NAV.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
+          ))}
+        </nav>
 
-          <a href="#grundlagen" style={{
-            background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`,
-            color: "#fff", padding: "9px 22px", borderRadius: 9,
-            fontSize: 14, fontWeight: 600, textDecoration: "none",
-          }} className="show-desktop">Jetzt starten</a>
-
-          <details className="mobile-menu show-burger">
-            <summary style={{
-              background: "rgba(255,255,255,0.06)", border: "none", borderRadius: 8,
-              padding: "8px 10px", cursor: "pointer", color: C.muted,
-              listStyle: "none",
-            }}>
-              <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-                <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
-            </summary>
-
-            <div style={{ borderTop: `1px solid ${C.border}`, padding: "12px 0 20px" }}>
-              {NAV.map(n => (
-                <a key={n} href={`#${n.toLowerCase()}`} className="mobile-menu-link" style={{
-                  display: "block", padding: "10px 0",
-                  borderBottom: `1px solid ${C.border}`,
-                  color: C.muted, textDecoration: "none", fontSize: 15,
-                }}>{n}</a>
-              ))}
-            </div>
-          </details>
-        </div>
+        <a className="header-cta" href="#prozess">
+          Fahrplan starten
+          <ArrowRight size={17} />
+        </a>
       </header>
 
-      <style>{`
-        @media (min-width: 768px) {
-          .hidden-mobile { display: flex !important; }
-          .show-desktop  { display: inline-block !important; }
-          .show-burger   { display: none !important; }
-        }
-        .hidden-mobile { display: none; }
-        .show-desktop  { display: none; }
-        .show-burger   { display: block; }
-        .nav-link:hover { color: ${C.text} !important; }
-        .footer-link:hover { color: ${C.muted} !important; }
-        .mobile-menu {
-          position: relative;
-        }
-        .mobile-menu > summary {
-          list-style: none;
-        }
-        .mobile-menu > summary::-webkit-details-marker {
-          display: none;
-        }
-        .seo-card:hover {
-          border-color: rgba(99,102,241,0.35) !important;
-          transform: translateY(-3px);
-          box-shadow: 0 20px 60px rgba(99,102,241,0.08);
-        }
-        .faq-item {
-          border-bottom: 1px solid ${C.border};
-          padding: 28px 0;
-        }
-        .faq-item > summary {
-          width: 100%;
-          text-align: left;
-          background: none;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 16px;
-          color: ${C.text};
-          list-style: none;
-        }
-        .faq-item > summary::-webkit-details-marker {
-          display: none;
-        }
-        .faq-plus {
-          flex-shrink: 0;
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255,255,255,0.06);
-          transition: all 0.25s ease;
-          transform: none;
-        }
-        .faq-item[open] .faq-plus {
-          transform: rotate(45deg);
-          background: ${C.accent}20;
-        }
-        .faq-answer {
-          overflow: hidden;
-          max-height: 0;
-          transition: max-height 0.35s ease;
-        }
-        .faq-item[open] .faq-answer {
-          max-height: 240px;
-        }
-      `}</style>
-
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", paddingTop: 64 }}>
-        <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 500, background: "radial-gradient(ellipse, rgba(99,102,241,0.13) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: "65%", left: "20%", width: 350, height: 350, background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(99,102,241,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.04) 1px,transparent 1px)", backgroundSize: "72px 72px", pointerEvents: "none" }} />
-
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto", padding: "0 32px", textAlign: "center" }}>
-          <div style={{ marginBottom: 32 }}>
-            <Tag>Google Ranking Guide 2025</Tag>
+      <section id="top" className="hero">
+        <div className="hero-copy">
+          <div className="hero-branding">
+            <span className="hero-wordmark">SEO GUIDE</span>
+            <span className="hero-tagline">Google Ranking · Struktur · Sichtbarkeit</span>
           </div>
 
-          <h1 style={{
-            fontSize: "clamp(2.6rem, 6vw, 5rem)",
-            fontWeight: 800, lineHeight: 1.1,
-            letterSpacing: "-0.03em", color: C.text, marginBottom: 24,
-          }}>
-            Mehr Sichtbarkeit.<br />
-            <span style={{ background: `linear-gradient(135deg, ${C.accent}, ${C.accent2}, #06b6d4)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              Mehr Kunden.
-            </span>
-          </h1>
+          <div className="hero-statement">
+            <Eyebrow>Webdesign · SEO · Ranking-Systeme</Eyebrow>
+            <h1>
+              <span>SEO, das gefunden wird.</span>
+              <span>Strukturen, die Vertrauen schaffen.</span>
+            </h1>
+            <p>
+              Der kompakte Leitfaden für bessere Google-Rankings, klare Inhalte und
+              eine Website, die Nutzer zielgerichtet zur Anfrage führt.
+            </p>
+          </div>
 
-          <p style={{ fontSize: 18, color: C.muted, maxWidth: 520, margin: "0 auto 44px", lineHeight: 1.7 }}>
-            Der komplette SEO-Leitfaden – kompakt erklärt. Lerne wie Google Rankings funktionieren und was du konkret tun kannst.
-          </p>
-
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#grundlagen" style={{
-              background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`,
-              color: "#fff", padding: "14px 32px", borderRadius: 10,
-              fontSize: 15, fontWeight: 600, textDecoration: "none",
-              boxShadow: `0 8px 32px rgba(99,102,241,0.35)`,
-              display: "flex", alignItems: "center", gap: 8,
-            }}>
-              Grundlagen verstehen <ArrowRight size={16} />
+          <div className="hero-actions">
+            <a className="primary-button" href="#grundlagen">
+              Grundlagen ansehen
+              <ArrowRight size={18} />
             </a>
-            <a href="#prozess" style={{
-              background: "rgba(255,255,255,0.05)",
-              border: `1px solid ${C.border}`,
-              color: C.text, padding: "14px 32px", borderRadius: 10,
-              fontSize: 15, fontWeight: 500, textDecoration: "none",
-            }}>Prozess ansehen</a>
+            <a className="secondary-button" href="#faktoren">Ranking-Faktoren</a>
           </div>
 
-          <div style={{ marginTop: 80, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.18)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Scroll</span>
-            <div style={{ width: 1, height: 48, background: `linear-gradient(to bottom, ${C.accent}, transparent)` }} />
-          </div>
+          <p className="hero-note">Klarer Aufbau. Messbare Prioritäten. Kein SEO-Chaos.</p>
         </div>
-      </section>
 
-      {/* ── STATS ───────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "80px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40, textAlign: "center" }}>
-            {[
-              { v: "5+ Bio.", l: "Suchanfragen pro Jahr bei Google" },
-              { v: "Seite 1", l: "erhält den Großteil der Klicks" },
-              { v: "Organisch", l: "bleibt ein zentraler Traffic-Kanal" },
-              { v: "Google", l: "ist oft der erste Einstieg in die Suche" },
-            ].map((s, i) => (
-              <div key={i}>
-                <div style={{
-                  fontSize: "clamp(2rem,4vw,2.8rem)", fontWeight: 800,
-                  background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`,
-                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                  marginBottom: 10,
-                }}>{s.v}</div>
-                <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.5, maxWidth: 160, margin: "0 auto" }}>{s.l}</p>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="signal-stage">
+            <div className="seo-console">
+              <div className="console-topbar">
+                <span />
+                <span />
+                <span />
+                <strong>SEO Fahrplan</strong>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── GRUNDLAGEN ──────────────────────────────────────────────────── */}
-      <section id="grundlagen" style={{ borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-            <div>
-              <div style={{ marginBottom: 24 }}><Tag>Was ist SEO?</Tag></div>
-              <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 24 }}>
-                Organisch gefunden werden – ohne Werbekosten.
-              </h2>
-              <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75, marginBottom: 20 }}>
-                SEO (Search Engine Optimization) sorgt dafür, dass deine Webseite bei relevanten Suchanfragen ganz oben erscheint – dauerhaft und ohne Klickkosten.
-              </p>
-              <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75 }}>
-                Die ersten organischen Ergebnisse erhalten den Großteil der Klicks. Seite 2 bekommt deutlich weniger Aufmerksamkeit.
-              </p>
-              <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75, marginTop: 20 }}>
-                Gute SEO verbindet technische Basis, klare Inhalte und nachvollziehbare Prioritäten. So entsteht Sichtbarkeit, die nicht nur gefunden wird, sondern auch zu Anfragen führt.
-              </p>
-            </div>
+              <div className="search-card">
+                <div className="search-pill">
+                  <Search size={16} />
+                  <span>bessere google rankings lokal</span>
+                </div>
+                <div className="search-score">
+                  <span>SEO Score</span>
+                  <strong>94</strong>
+                </div>
+              </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {BASICS.map(({ Icon, title, text }, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 16, padding: "20px 24px", background: C.surface, borderRadius: 12, border: `1px solid ${C.border}` }}>
-                  <IconBox Icon={Icon} />
+              <div className="serp-list">
+                <div className="serp-row active">
+                  <span>01</span>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: C.text, marginBottom: 4 }}>{title}</div>
-                    <div style={{ fontSize: 14, color: C.muted }}>{text}</div>
+                    <strong>Suchintention treffen</strong>
+                    <small>Inhalte beantworten die echte Nutzerfrage</small>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAKTOREN ────────────────────────────────────────────────────── */}
-      <section id="faktoren" style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag>Die wichtigsten Signale</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
-              Top Ranking-Faktoren
-            </h2>
-            <p style={{ fontSize: 17, color: C.muted, maxWidth: 480, margin: "0 auto" }}>
-              Google nutzt viele Signale. Diese drei Bereiche sind besonders wichtig.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, marginBottom: 48 }}>
-            {FACTORS.map(({ Icon, title, text }, i) => (
-              <Card key={i}>
-                <IconBox Icon={Icon} />
-                <h3 style={{ fontSize: 19, fontWeight: 700, color: C.text, margin: "20px 0 12px" }}>{title}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
-              </Card>
-            ))}
-          </div>
-
-          <div style={{
-            display: "grid",
-            gap: 12,
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-          }}>
-            {SECONDARY_FACTORS.map(({ Icon, label }, i) => (
-              <div key={i} style={{
-                display: "flex", alignItems: "center", gap: 12,
-                padding: "16px 20px", background: C.surface, borderRadius: 10, border: `1px solid ${C.border}`,
-              }}>
-                <Icon size={16} color={C.muted} strokeWidth={1.75} />
-                <span style={{ fontSize: 14, color: C.muted, fontWeight: 500 }}>{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── ON-PAGE OPTIMIERUNG ─────────────────────────────────────────── */}
-      <section id="optimierung" style={{ borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
-            <div style={{ position: "sticky", top: 96 }}>
-              <div style={{ marginBottom: 24 }}><Tag color="#8b5cf6">On-Page SEO</Tag></div>
-              <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 20 }}>
-                Was du direkt steuern kannst.
-              </h2>
-              <p style={{ fontSize: 17, color: C.muted, lineHeight: 1.75 }}>
-                On-Page SEO umfasst alle Optimierungen auf deiner eigenen Webseite – von der Struktur über Texte bis zu technischen Meta-Daten.
-              </p>
-            </div>
-
-            <div>
-              {ONPAGE.map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 24, padding: "32px 0", borderBottom: `1px solid ${C.border}` }}>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: C.accent, opacity: 0.5, flexShrink: 0, paddingTop: 3, fontVariantNumeric: "tabular-nums" }}>{item.n}</span>
+                <div className="serp-row">
+                  <span>02</span>
                   <div>
-                    <div style={{ fontSize: 17, fontWeight: 600, color: C.text, marginBottom: 8 }}>{item.title}</div>
-                    <div style={{ fontSize: 15, color: C.muted, lineHeight: 1.65 }}>{item.text}</div>
+                    <strong>Interne Links ordnen</strong>
+                    <small>Wichtige Seiten gezielt weiterführen</small>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── OFF-PAGE ────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag color="#06b6d4">Off-Page SEO</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
-              Autorität, die Google überzeugt.
-            </h2>
-            <p style={{ fontSize: 17, color: C.muted, maxWidth: 480, margin: "0 auto" }}>
-              Backlinks sind digitale Empfehlungen. Links von relevanten, vertrauenswürdigen Seiten können deutlich mehr Gewicht haben als viele irrelevante Links.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
-            {OFFPAGE.map(({ Icon, title, text }, i) => (
-              <Card key={i}>
-                <IconBox Icon={Icon} color="#06b6d4" />
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRAXIS ─────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag color="#22c55e">SEO in der Praxis</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
-              Was professionelle SEO zusätzlich braucht.
-            </h2>
-            <p style={{ fontSize: 17, color: C.muted, maxWidth: 560, margin: "0 auto" }}>
-              Gute Agenturseiten setzen nicht nur auf Grundlagen, sondern auf Analyse, lokale Sichtbarkeit, KI-Fähigkeit und messbare Ergebnisse.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
-            {PRACTICE.map(({ Icon, title, text }, i) => (
-              <Card key={i}>
-                <IconBox Icon={Icon} color="#22c55e" />
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FEHLER ─────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag color="#f97316">Häufige Fehler</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
-              Was gute SEO unnötig schwächt.
-            </h2>
-            <p style={{ fontSize: 17, color: C.muted, maxWidth: 560, margin: "0 auto" }}>
-              Die meisten SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Inhalte, fehlende Prioritäten oder zu wenig Messung.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
-            {ERRORS.map(({ Icon, title, text }, i) => (
-              <Card key={i}>
-                <IconBox Icon={Icon} color="#f97316" />
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, margin: "20px 0 10px" }}>{title}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROZESS ─────────────────────────────────────────────────────── */}
-      <section id="prozess" style={{ borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag color="#f59e0b">Dein Fahrplan</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text }}>
-              SEO in 4 Schritten.
-            </h2>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 32 }}>
-            {PROCESS.map((p, i) => (
-              <div key={i} style={{ textAlign: "center" }}>
-                <div style={{
-                  width: 64, height: 64, borderRadius: 16, margin: "0 auto 24px",
-                  background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 18, fontWeight: 800, color: C.accent,
-                }}>{p.n}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: C.text, marginBottom: 10 }}>{p.title}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.65, maxWidth: 200, margin: "0 auto" }}>{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TOOLS ───────────────────────────────────────────────────────── */}
-      <section id="tools" style={{ borderTop: `1px solid ${C.border}`, background: "#0b0b14" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag>Software & Ressourcen</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text, marginBottom: 16 }}>
-              Die besten SEO-Tools.
-            </h2>
-            <p style={{ fontSize: 17, color: C.muted }}>
-              Mit den richtigen Tools sparst du Zeit und triffst bessere Entscheidungen.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {TOOLS.map(({ Icon, name, tag, text }, i) => (
-              <Card key={i}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
-                  <IconBox Icon={Icon} />
-                  <span style={{
-                    fontSize: 12, fontWeight: 600, padding: "4px 10px", borderRadius: 100,
-                    background: tag === "Kostenlos" ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.12)",
-                    color: tag === "Kostenlos" ? "#34d399" : "#f87171",
-                    border: `1px solid ${tag === "Kostenlos" ? "rgba(16,185,129,0.2)" : "rgba(239,68,68,0.2)"}`,
-                  }}>{tag}</span>
+                <div className="serp-row">
+                  <span>03</span>
+                  <div>
+                    <strong>Core Web Vitals stärken</strong>
+                    <small>Schnell, stabil und mobil nutzbar</small>
+                  </div>
                 </div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.text, marginBottom: 10 }}>{name}</h3>
-                <p style={{ fontSize: 15, color: C.muted, lineHeight: 1.7 }}>{text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+              </div>
 
-      {/* ── FAQ ─────────────────────────────────────────────────────────── */}
-      <section id="faq" style={{ borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 780, margin: "0 auto", padding: "120px 32px" }}>
-          <div style={{ textAlign: "center", marginBottom: 72 }}>
-            <div style={{ marginBottom: 20 }}><Tag>Häufige Fragen</Tag></div>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: C.text }}>
-              Deine Fragen beantwortet.
-            </h2>
-          </div>
-          {FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} />)}
-        </div>
-      </section>
-
-      {/* ── CTA ─────────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: `1px solid ${C.border}`, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 400, background: "radial-gradient(ellipse, rgba(99,102,241,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 720, margin: "0 auto", padding: "140px 32px", textAlign: "center" }}>
-          <h2 style={{ fontSize: "clamp(2.2rem,5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", color: C.text, marginBottom: 20 }}>
-            Bereit für mehr<br />
-            <span style={{ background: `linear-gradient(135deg, ${C.accent}, ${C.accent2}, #06b6d4)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              Sichtbarkeit?
-            </span>
-          </h2>
-          <p style={{ fontSize: 17, color: C.muted, marginBottom: 44, lineHeight: 1.7 }}>
-            Starte heute. Schon kleine Verbesserungen können deine Rankings dauerhaft verändern.
-          </p>
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#grundlagen" style={{
-              background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`,
-              color: "#fff", padding: "15px 36px", borderRadius: 10,
-              fontSize: 15, fontWeight: 600, textDecoration: "none",
-              boxShadow: `0 8px 32px rgba(99,102,241,0.35)`,
-              display: "flex", alignItems: "center", gap: 8,
-            }}>
-              Zum Anfang <ArrowRight size={16} />
-            </a>
-            <a href="#faktoren" style={{
-              background: "rgba(255,255,255,0.05)", border: `1px solid ${C.border}`,
-              color: C.text, padding: "15px 36px", borderRadius: 10,
-              fontSize: 15, fontWeight: 500, textDecoration: "none",
-            }}>Ranking-Faktoren</a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ──────────────────────────────────────────────────────── */}
-      <footer style={{ borderTop: `1px solid ${C.border}`, background: "#060609" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "40px 32px", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", textAlign: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 8, background: `linear-gradient(135deg, ${C.accent}, ${C.accent2})`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Search size={13} color="#fff" strokeWidth={2.5} />
+              <div className="growth-panel">
+                <div>
+                  <span>Sichtbarkeit</span>
+                  <strong>+48%</strong>
+                </div>
+                <svg viewBox="0 0 220 88" role="presentation" focusable="false">
+                  <path className="growth-grid-line" d="M0 64H220" />
+                  <path className="growth-grid-line" d="M0 34H220" />
+                  <path className="growth-area" d="M4 74 C42 72 52 54 86 56 C124 58 130 28 164 30 C190 31 198 18 216 14 V88 H4 Z" />
+                  <path className="growth-line" d="M4 74 C42 72 52 54 86 56 C124 58 130 28 164 30 C190 31 198 18 216 14" />
+                </svg>
+              </div>
             </div>
-            <span style={{ fontWeight: 700, fontSize: 14, color: C.text }}>SEO<span style={{ color: C.accent }}>Guide</span></span>
+
+            <div className="floating-kpi kpi-one">
+              <span>Keywords</span>
+              <strong>+37</strong>
+            </div>
+            <div className="floating-kpi kpi-two">
+              <span>Anfragen</span>
+              <strong>+31%</strong>
+            </div>
           </div>
-          <div style={{ display: "flex", gap: 32, flexWrap: "wrap", justifyContent: "center" }}>
-            {NAV.map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} className="footer-link" style={{ fontSize: 13, color: "rgba(255,255,255,0.22)", textDecoration: "none" }}
-              >{n}</a>
-            ))}
+        </div>
+      </section>
+
+      <section className="metric-strip" aria-label="SEO Kennzahlen">
+        {[
+          ["5+ Bio.", "Google-Suchanfragen pro Jahr"],
+          ["Seite 1", "bekommt die entscheidenden Klicks"],
+          ["Organisch", "arbeitet langfristig weiter"],
+          ["Lokal", "macht Anfragen messbar"],
+        ].map(([value, label]) => (
+          <div className="metric" key={value}>
+            <strong>{value}</strong>
+            <span>{label}</span>
           </div>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.2)" }}>
-            © 2025 SEOGuide · Alle Angaben ohne Gewähr
+        ))}
+      </section>
+
+      <section id="grundlagen" className="section split-section">
+        <div className="split-copy">
+          <Eyebrow>Was ist SEO?</Eyebrow>
+          <h2>Organisch sichtbar werden, ohne jeden Klick zu bezahlen.</h2>
+          <p>
+            Suchmaschinenoptimierung verbindet technische Basis, klare Inhalte und Vertrauen.
+            So entsteht Sichtbarkeit, die Nutzer nicht nur erreicht, sondern in Anfragen verwandelt.
           </p>
+        </div>
+        <div className="feature-list">
+          {BASICS.map(({ Icon, title, text }) => (
+            <article className="feature-item" key={title}>
+              <Icon size={20} />
+              <div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="faktoren" className="section">
+        <SectionHeading
+          eyebrow="Ranking-Signale"
+          title="Die Faktoren hinter guten Google-Positionen."
+          text="Google bewertet viele Signale. Diese Bereiche entscheiden besonders oft darüber, ob eine Seite sichtbar wird."
+        />
+        <div className="service-grid">
+          {FACTORS.map(({ Icon, title, text }) => (
+            <article className="service-card" key={title}>
+              <Icon size={27} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="signal-list">
+          {SECONDARY_FACTORS.map(({ Icon, label }) => (
+            <div className="signal-item" key={label}>
+              <Icon size={17} />
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="optimierung" className="section split-section optimization-section">
+        <div className="split-copy sticky-copy">
+          <Eyebrow>On-Page SEO</Eyebrow>
+          <h2>Alles, was du direkt auf deiner Website steuern kannst.</h2>
+          <p>
+            On-Page SEO ordnet Texte, Meta-Daten, interne Links und Medien so, dass Nutzer
+            und Suchmaschinen schnell verstehen, warum deine Seite relevant ist.
+          </p>
+        </div>
+        <div className="timeline-list">
+          {ONPAGE.map((item) => (
+            <article className="timeline-item" key={item.n}>
+              <span>{item.n}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section dark-band">
+        <SectionHeading
+          eyebrow="Off-Page SEO"
+          title="Autorität, die außerhalb deiner Website entsteht."
+          text="Vertrauen entsteht durch Empfehlungen, Erwähnungen und lokale Signale, die zu deinem Angebot passen."
+        />
+        <div className="service-grid">
+          {OFFPAGE.map(({ Icon, title, text }) => (
+            <article className="service-card" key={title}>
+              <Icon size={27} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <SectionHeading
+          eyebrow="SEO in der Praxis"
+          title="Ein System aus Analyse, Struktur und messbarer Umsetzung."
+          text="Professionelle SEO funktioniert nicht als Einmalmaßnahme, sondern als wiederholbarer Prozess."
+        />
+        <div className="service-grid four">
+          {PRACTICE.map(({ Icon, title, text }) => (
+            <article className="service-card compact-card" key={title}>
+              <Icon size={25} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section dark-band">
+        <SectionHeading
+          eyebrow="Häufige Fehler"
+          title="Was gute Rankings unnötig ausbremst."
+          text="Viele SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Prioritäten."
+        />
+        <div className="service-grid four">
+          {ERRORS.map(({ Icon, title, text }) => (
+            <article className="service-card compact-card" key={title}>
+              <Icon size={25} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="prozess" className="section process-section">
+        <SectionHeading eyebrow="Prozess" title="Vier Schritte bis zur sichtbaren SEO-Struktur." compact />
+        <div className="process-grid">
+          {PROCESS.map((step) => (
+            <article className="process-step" key={step.n}>
+              <span>{step.n}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="tools" className="section packages-section">
+        <SectionHeading eyebrow="Tools" title="Software, die Entscheidungen messbar macht." compact />
+        <div className="package-grid">
+          {TOOLS.map(({ Icon, name, tag, text }) => (
+            <article className="package-card" key={name}>
+              <Icon size={25} />
+              <h3>{name}</h3>
+              <p className="price">{tag}</p>
+              <p>{text}</p>
+              <a href="#faq">
+                Details
+                <ArrowRight size={17} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="faq" className="section faq-section">
+        <SectionHeading eyebrow="FAQ" title="Antworten auf die wichtigsten SEO-Fragen." compact />
+        <div className="faq-list">
+          {FAQ.map((item) => (
+            <details className="faq-item" key={item.q}>
+              <summary>
+                <span>{item.q}</span>
+                <span className="faq-plus"><Plus size={15} /></span>
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-section">
+        <div>
+          <Eyebrow>Projekt anfragen</Eyebrow>
+          <h2>Bereit für mehr Sichtbarkeit und klare SEO-Prioritäten?</h2>
+          <p>
+            Starte mit einer sauberen Analyse, einer verständlichen Seitenstruktur und Inhalten,
+            die Ranking, Vertrauen und Anfragefokus verbinden.
+          </p>
+        </div>
+        <div className="contact-card">
+          {["SEO-Audit", "Content-Struktur", "Lokale Sichtbarkeit"].map((item) => (
+            <div className="contact-choice" key={item}>
+              <Check size={17} />
+              <span>{item}</span>
+            </div>
+          ))}
+          <a className="primary-button" href="#grundlagen">
+            Zum Anfang
+            <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <footer className="site-footer">
+        <div className="footer-top">
+          <div className="footer-branding">
+            <span className="brand">
+              <BrandMark />
+              <span className="brand-copy">SEOGUIDE</span>
+            </span>
+            <span>SEO, Google-Ranking und klare Website-Strukturen im DigitalVision-Look.</span>
+          </div>
+          <a className="footer-back-to-top" href="#top">
+            <Search size={16} />
+            Nach oben
+          </a>
         </div>
       </footer>
-
-    </div>
+    </main>
   );
 }
