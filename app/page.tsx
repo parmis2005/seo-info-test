@@ -167,17 +167,15 @@ export default function Page() {
         <div className="hero-copy">
           <div className="hero-branding">
             <span className="hero-wordmark">SEO KOMPAKT</span>
-            <span className="hero-tagline">Ranking · Content · Technik</span>
+            <span className="hero-tagline">Ranking, Content und Technik</span>
           </div>
 
           <div className="hero-statement">
-            <Eyebrow>Leitfaden für bessere Sichtbarkeit</Eyebrow>
             <h1>
-              <span>SEO einfach erklärt.</span>
               <span>Besser gefunden werden.</span>
             </h1>
             <p>
-              Kurzer Überblick zu Keywords, Technik, Content und lokalen Rankings.
+              Die wichtigsten SEO-Grundlagen auf den Punkt.
             </p>
           </div>
 
