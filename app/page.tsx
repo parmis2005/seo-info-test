@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 import {
   Link2,
   PenLine,
@@ -135,20 +133,18 @@ function Tag({ children, color = C.accent }: { children: string; color?: string 
   );
 }
 
-function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
-  const [hovered, setHovered] = useState(false);
+function Card({ children, style }: { children: ReactNode; style?: CSSProperties }) {
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="seo-card"
       style={{
         background: C.surface,
-        border: `1px solid ${hovered ? "rgba(99,102,241,0.35)" : C.border}`,
+        border: `1px solid ${C.border}`,
         borderRadius: 16,
         padding: "36px 32px",
         transition: "all 0.25s ease",
-        transform: hovered ? "translateY(-3px)" : "none",
-        boxShadow: hovered ? "0 20px 60px rgba(99,102,241,0.08)" : "none",
+        transform: "translateY(0)",
+        boxShadow: "none",
         ...style,
       }}
     >
@@ -157,7 +153,7 @@ function Card({ children, style }: { children: React.ReactNode; style?: React.CS
   );
 }
 
-function IconBox({ Icon, color = C.accent }: { Icon: React.ElementType; color?: string }) {
+function IconBox({ Icon, color = C.accent }: { Icon: ElementType; color?: string }) {
   return (
     <div style={{
       width: 44, height: 44, borderRadius: 10, flexShrink: 0,
@@ -170,38 +166,23 @@ function IconBox({ Icon, color = C.accent }: { Icon: React.ElementType; color?: 
 }
 
 function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
   return (
-    <div style={{ borderBottom: `1px solid ${C.border}`, padding: "28px 0" }}>
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          width: "100%", textAlign: "left", background: "none", border: "none",
-          cursor: "pointer", display: "flex", justifyContent: "space-between",
-          alignItems: "center", gap: 16, color: C.text,
-        }}
-      >
+    <details className="faq-item">
+      <summary>
         <span style={{ fontSize: 17, fontWeight: 500 }}>{q}</span>
-        <span style={{
-          flexShrink: 0, width: 28, height: 28, borderRadius: "50%",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          background: open ? `${C.accent}20` : "rgba(255,255,255,0.06)",
-          transition: "all 0.25s ease",
-          transform: open ? "rotate(45deg)" : "none",
-        }}>
-          <Plus size={14} color={open ? C.accent : C.muted} />
+        <span className="faq-plus">
+          <Plus size={14} color={C.muted} />
         </span>
-      </button>
-      <div style={{ overflow: "hidden", maxHeight: open ? 200 : 0, transition: "max-height 0.35s ease" }}>
+      </summary>
+      <div className="faq-answer">
         <p style={{ paddingTop: 16, fontSize: 15, lineHeight: 1.75, color: C.muted }}>{a}</p>
       </div>
-    </div>
+    </details>
   );
 }
 
 /* ──────────────────────────────── page ─────────────────────────────────── */
 export default function Page() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const NAV = ["Grundlagen", "Faktoren", "Optimierung", "Prozess", "Tools", "FAQ"];
 
   return (
@@ -229,12 +210,10 @@ export default function Page() {
 
           <nav style={{ display: "flex", gap: 4 }} className="hidden-mobile">
             {NAV.map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} style={{
+              <a key={n} href={`#${n.toLowerCase()}`} className="nav-link" style={{
                 padding: "6px 14px", borderRadius: 8, fontSize: 14,
                 color: C.muted, textDecoration: "none", transition: "color 0.2s",
               }}
-                onMouseEnter={e => (e.currentTarget.style.color = C.text)}
-                onMouseLeave={e => (e.currentTarget.style.color = C.muted)}
               >{n}</a>
             ))}
           </nav>
@@ -245,27 +224,28 @@ export default function Page() {
             fontSize: 14, fontWeight: 600, textDecoration: "none",
           }} className="show-desktop">Jetzt starten</a>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{
-            background: "rgba(255,255,255,0.06)", border: "none", borderRadius: 8,
-            padding: "8px 10px", cursor: "pointer", color: C.muted,
-          }} className="show-burger">
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-              <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-          </button>
-        </div>
+          <details className="mobile-menu show-burger">
+            <summary style={{
+              background: "rgba(255,255,255,0.06)", border: "none", borderRadius: 8,
+              padding: "8px 10px", cursor: "pointer", color: C.muted,
+              listStyle: "none",
+            }}>
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+                <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
+            </summary>
 
-        {menuOpen && (
-          <div style={{ borderTop: `1px solid ${C.border}`, padding: "12px 32px 20px" }}>
-            {NAV.map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{
-                display: "block", padding: "10px 0",
-                borderBottom: `1px solid ${C.border}`,
-                color: C.muted, textDecoration: "none", fontSize: 15,
-              }}>{n}</a>
-            ))}
-          </div>
-        )}
+            <div style={{ borderTop: `1px solid ${C.border}`, padding: "12px 0 20px" }}>
+              {NAV.map(n => (
+                <a key={n} href={`#${n.toLowerCase()}`} className="mobile-menu-link" style={{
+                  display: "block", padding: "10px 0",
+                  borderBottom: `1px solid ${C.border}`,
+                  color: C.muted, textDecoration: "none", fontSize: 15,
+                }}>{n}</a>
+              ))}
+            </div>
+          </details>
+        </div>
       </header>
 
       <style>{`
@@ -277,6 +257,66 @@ export default function Page() {
         .hidden-mobile { display: none; }
         .show-desktop  { display: none; }
         .show-burger   { display: block; }
+        .nav-link:hover { color: ${C.text} !important; }
+        .footer-link:hover { color: ${C.muted} !important; }
+        .mobile-menu {
+          position: relative;
+        }
+        .mobile-menu > summary {
+          list-style: none;
+        }
+        .mobile-menu > summary::-webkit-details-marker {
+          display: none;
+        }
+        .seo-card:hover {
+          border-color: rgba(99,102,241,0.35) !important;
+          transform: translateY(-3px);
+          box-shadow: 0 20px 60px rgba(99,102,241,0.08);
+        }
+        .faq-item {
+          border-bottom: 1px solid ${C.border};
+          padding: 28px 0;
+        }
+        .faq-item > summary {
+          width: 100%;
+          text-align: left;
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          color: ${C.text};
+          list-style: none;
+        }
+        .faq-item > summary::-webkit-details-marker {
+          display: none;
+        }
+        .faq-plus {
+          flex-shrink: 0;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255,255,255,0.06);
+          transition: all 0.25s ease;
+          transform: none;
+        }
+        .faq-item[open] .faq-plus {
+          transform: rotate(45deg);
+          background: ${C.accent}20;
+        }
+        .faq-answer {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.35s ease;
+        }
+        .faq-item[open] .faq-answer {
+          max-height: 240px;
+        }
       `}</style>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
@@ -650,9 +690,7 @@ export default function Page() {
           </div>
           <div style={{ display: "flex", gap: 32, flexWrap: "wrap", justifyContent: "center" }}>
             {NAV.map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} style={{ fontSize: 13, color: "rgba(255,255,255,0.22)", textDecoration: "none" }}
-                onMouseEnter={e => (e.currentTarget.style.color = C.muted)}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.22)")}
+              <a key={n} href={`#${n.toLowerCase()}`} className="footer-link" style={{ fontSize: 13, color: "rgba(255,255,255,0.22)", textDecoration: "none" }}
               >{n}</a>
             ))}
           </div>
