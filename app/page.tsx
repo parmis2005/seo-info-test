@@ -166,19 +166,18 @@ export default function Page() {
       <section id="top" className="hero">
         <div className="hero-copy">
           <div className="hero-branding">
-            <span className="hero-wordmark">SEO GUIDE</span>
-            <span className="hero-tagline">Google Ranking · Struktur · Sichtbarkeit</span>
+            <span className="hero-wordmark">SEO KOMPAKT</span>
+            <span className="hero-tagline">Ranking · Content · Technik</span>
           </div>
 
           <div className="hero-statement">
-            <Eyebrow>Webdesign · SEO · Ranking-Systeme</Eyebrow>
+            <Eyebrow>Leitfaden für bessere Sichtbarkeit</Eyebrow>
             <h1>
-              <span>SEO, das gefunden wird.</span>
-              <span>Strukturen, die Vertrauen schaffen.</span>
+              <span>SEO einfach erklärt.</span>
+              <span>Besser gefunden werden.</span>
             </h1>
             <p>
-              Der kompakte Leitfaden für bessere Google-Rankings, klare Inhalte und
-              eine Website, die Nutzer zielgerichtet zur Anfrage führt.
+              Kurzer Überblick zu Keywords, Technik, Content und lokalen Rankings.
             </p>
           </div>
 
