@@ -916,6 +916,22 @@ p {
   font-size: 1.08rem;
   line-height: 1.58;
 }
+.left-heading-section .section-heading {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: start;
+  align-items: start;
+  gap: 16px;
+  margin-right: 0;
+  margin-left: 0;
+}
+.left-heading-section .section-heading h2,
+.left-heading-section .section-heading p,
+.left-heading-section .split-copy {
+  max-width: 760px;
+}
+.left-heading-section .split-copy {
+  justify-self: start;
+}
 .split-section {
   border-top: 1px solid var(--line);
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);

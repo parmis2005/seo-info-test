@@ -297,7 +297,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="faktoren" className="section">
+      <section id="faktoren" className="section left-heading-section">
         <SectionHeading
           eyebrow="Ranking-Signale"
           title="Die Faktoren hinter guten Google-Positionen."
@@ -322,7 +322,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="optimierung" className="section split-section optimization-section">
+      <section id="optimierung" className="section split-section optimization-section left-heading-section">
         <div className="split-copy sticky-copy">
           <Eyebrow>On-Page SEO</Eyebrow>
           <h2>Alles, was du direkt auf deiner Website steuern kannst.</h2>
@@ -344,7 +344,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section dark-band">
+      <section className="section dark-band left-heading-section">
         <SectionHeading
           eyebrow="Off-Page SEO"
           title="Autorität, die außerhalb deiner Website entsteht."
@@ -378,7 +378,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section dark-band">
+      <section className="section dark-band left-heading-section">
         <SectionHeading
           eyebrow="Häufige Fehler"
           title="Was gute Rankings unnötig ausbremst."
