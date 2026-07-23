@@ -174,11 +174,8 @@ export default function Page() {
 
           <div className="hero-statement">
             <h1>
-              <span>Sichtbarkeit beginnt mit klarer Struktur.</span>
+              <span>SEO klar verstehen.</span>
             </h1>
-            <p>
-              Ein kompakter Überblick für bessere Rankings und verständliche Optimierungsschritte.
-            </p>
           </div>
 
           <div className="hero-focus-map" aria-label="SEO Fokus">
