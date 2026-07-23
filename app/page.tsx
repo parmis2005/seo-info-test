@@ -94,9 +94,27 @@ const PROCESS = [
 ];
 
 const TOOLS = [
-  { Icon: Search, name: "Google Search Console", tag: "Kostenlos", text: "Direkte Daten zu Klicks, Impressionen, Rankings und technischen Problemen." },
-  { Icon: BarChart2, name: "SEO-Crawler", tag: "Audit", text: "Crawls zeigen defekte Links, Weiterleitungen, Statuscodes, Meta-Daten und technische Muster auf größeren Websites." },
-  { Icon: Globe, name: "PageSpeed Insights", tag: "Performance", text: "Core Web Vitals und konkrete Ladezeitprobleme werden sichtbar, damit Technik gezielt verbessert werden kann." },
+  {
+    Icon: Search,
+    name: "Google Search Console",
+    tag: "Kostenlos",
+    text: "Direkte Daten zu Klicks, Impressionen, Rankings und technischen Problemen.",
+    detail: "Zeigt, über welche Suchanfragen Nutzer auf die Website kommen und welche Seiten bereits Sichtbarkeit aufbauen.",
+  },
+  {
+    Icon: BarChart2,
+    name: "SEO-Crawler",
+    tag: "Audit",
+    text: "Crawls zeigen defekte Links, Weiterleitungen, Statuscodes, Meta-Daten und technische Muster auf größeren Websites.",
+    detail: "Findet technische Fehler, doppelte Inhalte, Weiterleitungen und fehlende SEO-Basics auf der Website.",
+  },
+  {
+    Icon: Globe,
+    name: "PageSpeed Insights",
+    tag: "Performance",
+    text: "Core Web Vitals und konkrete Ladezeitprobleme werden sichtbar, damit Technik gezielt verbessert werden kann.",
+    detail: "Bewertet Ladezeit, Stabilität und mobile Nutzbarkeit, damit technische Schwächen gezielt verbessert werden können.",
+  },
 ];
 
 const FAQ = [
@@ -429,16 +447,21 @@ export default function Page() {
       <section id="tools" className="section packages-section">
         <SectionHeading eyebrow="Tools" title="Software, die Entscheidungen messbar macht." compact />
         <div className="package-grid">
-          {TOOLS.map(({ Icon, name, tag, text }) => (
+          {TOOLS.map(({ Icon, name, tag, text, detail }) => (
             <article className="package-card" key={name}>
               <Icon size={25} />
               <h3>{name}</h3>
               <p className="price">{tag}</p>
               <p>{text}</p>
-              <a href="#faq">
-                Details
-                <ArrowRight size={17} />
-              </a>
+              <details className="tool-details">
+                <summary>
+                  Details
+                  <Plus size={15} />
+                </summary>
+                <div className="tool-detail-popup">
+                  <p>{detail}</p>
+                </div>
+              </details>
             </article>
           ))}
         </div>

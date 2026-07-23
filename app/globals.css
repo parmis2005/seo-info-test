@@ -1168,6 +1168,7 @@ p {
     border-color 0.18s,
     box-shadow 0.18s;
   display: grid;
+  position: relative;
 }
 .service-card:hover,
 .package-card:hover {
@@ -1247,14 +1248,65 @@ p {
   font-weight: 900;
   line-height: 1;
 }
-.package-card a {
+.tool-details {
+  width: fit-content;
+  margin-top: 24px;
+  position: relative;
+}
+.tool-details summary {
   color: #fff;
+  cursor: pointer;
+  list-style: none;
   align-items: center;
   gap: 8px;
   width: fit-content;
-  margin-top: 24px;
   font-weight: 850;
   display: inline-flex;
+}
+.tool-details summary::-webkit-details-marker {
+  display: none;
+}
+.tool-details summary svg {
+  color: var(--cyan);
+  transition: transform 0.18s ease;
+}
+.tool-details[open] summary svg {
+  transform: rotate(45deg);
+}
+.tool-detail-popup {
+  z-index: 3;
+  width: min(300px, 72vw);
+  padding: 14px;
+  background:
+    linear-gradient(#9be4ff0c 1px, #0000 1px) 0 0/30px 30px,
+    linear-gradient(90deg, #9be4ff0c 1px, #0000 1px) 0 0/30px 30px,
+    #071126f2;
+  border: 1px solid #9be4ff35;
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px #ffffff12,
+    0 18px 34px #0105104a;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+}
+.tool-detail-popup:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #071126f2;
+  border-top: 1px solid #9be4ff35;
+  border-left: 1px solid #9be4ff35;
+  position: absolute;
+  top: -6px;
+  left: 18px;
+  transform: rotate(45deg);
+}
+.tool-detail-popup p {
+  color: #c8d5e8;
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.48;
 }
 .faq-section {
   max-width: 900px;
