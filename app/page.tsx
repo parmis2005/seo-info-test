@@ -181,6 +181,20 @@ export default function Page() {
             </p>
           </div>
 
+          <div className="hero-focus-map" aria-label="SEO Fokus">
+            {[
+              ["01", "Analyse", "Suchintention & Wettbewerb"],
+              ["02", "Optimierung", "Technik & Content"],
+              ["03", "Wachstum", "Rankings & Anfragen"],
+            ].map(([step, title, text]) => (
+              <div className="focus-node" key={step}>
+                <span>{step}</span>
+                <strong>{title}</strong>
+                <small>{text}</small>
+              </div>
+            ))}
+          </div>
+
           <div className="hero-actions">
             <a className="primary-button" href="#grundlagen">
               Grundlagen ansehen
@@ -265,10 +279,10 @@ export default function Page() {
 
       <section className="metric-strip" aria-label="SEO Kennzahlen">
         {[
-          ["5+ Bio.", "Google-Suchanfragen pro Jahr"],
-          ["Seite 1", "bekommt die entscheidenden Klicks"],
-          ["Organisch", "arbeitet langfristig weiter"],
-          ["Lokal", "macht Anfragen messbar"],
+          ["Über 5 Milliarden", "Google-Suchanfragen werden täglich gestellt"],
+          ["Erste Seite", "Die besten Positionen erhalten die wichtigsten Klicks"],
+          ["Organische Sichtbarkeit", "SEO wirkt langfristig ohne laufende Klickkosten"],
+          ["Lokale Suche", "Regionale Rankings machen Anfragen messbar"],
         ].map(([value, label]) => (
           <div className="metric" key={value}>
             <strong>{value}</strong>
