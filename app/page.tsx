@@ -167,27 +167,32 @@ export default function Page() {
 
       <section id="top" className="hero">
         <div className="hero-copy">
-          <div className="hero-branding">
-            <span className="hero-wordmark">SEO Leitfaden</span>
-            <span className="hero-tagline">Technik, Inhalte und Vertrauen richtig einordnen</span>
-          </div>
-
           <div className="hero-statement">
             <h1>
               <span>SEO klar verstehen.</span>
             </h1>
           </div>
 
-          <div className="hero-focus-map" aria-label="SEO Fokus">
+          <div className="hero-focus-panel" aria-label="SEO Fokus">
+            <div className="focus-topbar">
+              <span />
+              <span />
+              <span />
+              <strong>SEO Leitfaden</strong>
+              <em>Ranking · Content · Technik</em>
+            </div>
+
             {[
-              ["01", "Analyse", "Suchintention & Wettbewerb"],
-              ["02", "Optimierung", "Technik & Content"],
-              ["03", "Wachstum", "Rankings & Anfragen"],
+              ["01", "Suchintention", "Nutzerfrage präzise beantworten"],
+              ["02", "Struktur", "Inhalte sinnvoll verbinden"],
+              ["03", "Technik", "Schnell und sauber auffindbar"],
             ].map(([step, title, text]) => (
-              <div className="focus-node" key={step}>
+              <div className="focus-row" key={step}>
                 <span>{step}</span>
-                <strong>{title}</strong>
-                <small>{text}</small>
+                <div>
+                  <strong>{title}</strong>
+                  <small>{text}</small>
+                </div>
               </div>
             ))}
           </div>
