@@ -28,17 +28,17 @@ const FACTORS = [
   {
     Icon: Link2,
     title: "Backlinks",
-    text: "Links von relevanten Webseiten sind starke Vertrauenssignale. Qualität, Kontext und Glaubwürdigkeit zählen mehr als Masse.",
+    text: "Backlinks wirken wie Empfehlungen von außen. Entscheidend sind Relevanz, Qualität und ein natürliches Linkprofil statt möglichst vieler schwacher Verweise.",
   },
   {
     Icon: PenLine,
     title: "Content-Qualität",
-    text: "Inhalte müssen Suchintention, Tiefe und klare Struktur verbinden, damit Nutzer und Suchmaschinen den Wert sofort erkennen.",
+    text: "Gute Inhalte beantworten echte Fragen, erklären ein Thema vollständig und sind klar gegliedert. So verstehen Nutzer, Suchmaschinen und KI-Systeme den Mehrwert schneller.",
   },
   {
     Icon: Zap,
-    title: "Core Web Vitals",
-    text: "Ladezeit, Interaktivität und visuelle Stabilität entscheiden mit darüber, ob eine Seite professionell wirkt und sauber ranken kann.",
+    title: "Technische Basis",
+    text: "Ladezeit, mobile Darstellung, Sicherheit, Crawlbarkeit und saubere Statuscodes bilden das Fundament. Technische Fehler bremsen Rankings oft, bevor Content wirken kann.",
   },
 ];
 
@@ -51,61 +51,63 @@ const BASICS = [
 
 const SECONDARY_FACTORS = [
   { Icon: Smartphone, label: "Mobile-First" },
-  { Icon: Lock, label: "HTTPS / Sicherheit" },
-  { Icon: Target, label: "Keyword-Relevanz" },
+  { Icon: Lock, label: "HTTPS & Sicherheit" },
+  { Icon: Target, label: "Suchintention" },
   { Icon: Clock, label: "UX & Verweildauer" },
-  { Icon: Layers, label: "Strukturierte Daten" },
-  { Icon: RefreshCw, label: "Aktualität" },
+  { Icon: Layers, label: "Saubere Seitenstruktur" },
+  { Icon: RefreshCw, label: "Regelmäßige Updates" },
 ];
 
 const ONPAGE = [
   { n: "01", title: "Title Tag", text: "50 bis 60 Zeichen, klares Hauptthema und ein Nutzenversprechen." },
   { n: "02", title: "Meta-Description", text: "120 bis 160 Zeichen, verständlicher Mehrwert und ein konkreter Klickanreiz." },
-  { n: "03", title: "Überschriften", text: "Eine klare H1, logisch gegliederte H2/H3 und natürliche Keyword-Abdeckung." },
-  { n: "04", title: "Interne Links", text: "Wichtige Seiten werden logisch verbunden und Nutzer werden gezielt weitergeführt." },
-  { n: "05", title: "Bilder & Alt-Texte", text: "Komprimierte Medien, sprechende Dateinamen und beschreibende Alternativtexte." },
+  { n: "03", title: "Überschriften", text: "Eine klare H1, logisch gegliederte H2/H3 und natürliche Begriffe rund um das Thema." },
+  { n: "04", title: "Interne Links", text: "Wichtige Seiten werden logisch verbunden, damit Nutzer und Crawler schnell zum nächsten relevanten Inhalt finden." },
+  { n: "05", title: "Bilder & Medien", text: "Komprimierte Medien, sprechende Dateinamen und beschreibende Alternativtexte verbessern Geschwindigkeit und Verständlichkeit." },
 ];
 
 const OFFPAGE = [
-  { Icon: Trophy, title: "Linkbuilding", text: "Natürliche Empfehlungen entstehen durch starke Inhalte, Kooperationen und relevante Erwähnungen." },
-  { Icon: Megaphone, title: "Brand Mentions", text: "Nennungen deiner Marke schaffen Vertrauen, auch wenn nicht jede Erwähnung direkt verlinkt." },
-  { Icon: Star, title: "Google Business Profile", text: "Für lokale Suche sind Bewertungen, Öffnungszeiten, Leistungen und Beiträge entscheidend." },
+  { Icon: Trophy, title: "Linkaufbau", text: "Relevante Backlinks zeigen Suchmaschinen, dass andere Quellen deine Inhalte als vertrauenswürdig einstufen." },
+  { Icon: Megaphone, title: "Markenerwähnungen", text: "Auch Erwähnungen ohne direkten Link können Autorität stärken, wenn sie thematisch passend und glaubwürdig sind." },
+  { Icon: Star, title: "Lokale Signale", text: "Bewertungen, ein gepflegtes Google Business Profile, Öffnungszeiten und Standortinformationen sind für lokale Rankings zentral." },
 ];
 
 const PRACTICE = [
-  { Icon: ShieldCheck, title: "SEO-Audit", text: "Technik, Inhalte, Struktur und Wettbewerb werden priorisiert statt isoliert betrachtet." },
-  { Icon: Globe, title: "Lokale Sichtbarkeit", text: "Regionale Suchbegriffe, Karten-Ergebnisse und Standortsignale werden gezielt aufgebaut." },
-  { Icon: Search, title: "Google + KI-Suchen", text: "Inhalte bleiben klar, modular und verständlich für klassische Suche und KI-Antwortsysteme." },
-  { Icon: BarChart2, title: "Tracking", text: "Rankings, Klicks und Anfragen werden messbar, damit Optimierung nicht auf Bauchgefühl basiert." },
+  { Icon: ShieldCheck, title: "SEO-Audit", text: "Ein Audit prüft Technik, Inhalte, Struktur, Wettbewerb und schnelle Hebel. Daraus entsteht eine klare Reihenfolge der nächsten Maßnahmen." },
+  { Icon: Globe, title: "Local SEO", text: "Für regionale Anbieter zählen lokale Suchbegriffe, Karten-Ergebnisse, Bewertungen und konsistente Standortdaten besonders stark." },
+  { Icon: Search, title: "Google + KI-Suchen", text: "Moderne Inhalte sollten nicht nur ranken, sondern auch von KI-Systemen verstanden, zusammengefasst und als Quelle erkannt werden können." },
+  { Icon: BarChart2, title: "Reporting & KPIs", text: "Klicks, Impressionen, Rankings, technische Fehler und Anfragen müssen regelmäßig sichtbar sein, damit SEO steuerbar bleibt." },
 ];
 
 const ERRORS = [
   { Icon: Search, title: "Suchintention ignorieren", text: "Ein Keyword reicht nicht, wenn die Seite die eigentliche Nutzerfrage verfehlt." },
   { Icon: PenLine, title: "Zu wenig Tiefe", text: "Oberflächliche Texte verlieren gegen Seiten, die ein Thema vollständig erklären." },
-  { Icon: Globe, title: "Lokale Signale vergessen", text: "Adresse, Bewertungen und lokale Inhalte entscheiden oft über regionale Sichtbarkeit." },
-  { Icon: BarChart2, title: "Nicht messen", text: "Ohne Daten bleiben Fortschritte unsichtbar und Prioritäten geraten durcheinander." },
+  { Icon: Globe, title: "Technik unterschätzen", text: "Langsame Seiten, fehlerhafte Weiterleitungen oder blockierte Inhalte verhindern, dass Suchmaschinen deine Seite sauber erfassen." },
+  { Icon: BarChart2, title: "Black-Box-SEO akzeptieren", text: "Ohne transparente Daten, klare Aufgaben und regelmäßige Auswertung bleiben Fortschritte unsichtbar und Prioritäten geraten durcheinander." },
 ];
 
 const PROCESS = [
-  { n: "01", title: "Analyse", text: "Keywords, Wettbewerb, Technik und vorhandene Inhalte werden sauber bewertet." },
-  { n: "02", title: "Struktur", text: "Seitenarchitektur, interne Links und Suchintentionen werden geordnet." },
-  { n: "03", title: "Content", text: "Inhalte werden erweitert, geschärft und für Nutzerführung optimiert." },
-  { n: "04", title: "Autorität", text: "Relevante Signale, Backlinks und lokale Faktoren werden kontinuierlich aufgebaut." },
+  { n: "01", title: "Analyse", text: "Keywords, Wettbewerb, Technik, bestehende Inhalte und lokale Chancen werden zuerst bewertet." },
+  { n: "02", title: "Technik & Struktur", text: "Crawlbarkeit, Ladezeit, interne Links und Seitenarchitektur schaffen die Basis für bessere Auffindbarkeit." },
+  { n: "03", title: "Content", text: "Texte, Landingpages und Ratgeber werden so aufgebaut, dass sie Nutzerfragen beantworten und semantisch klar sind." },
+  { n: "04", title: "Autorität & Messung", text: "Backlinks, Erwähnungen, Bewertungen und KPI-Tracking zeigen, ob die Maßnahmen tatsächlich Wirkung erzeugen." },
 ];
 
 const TOOLS = [
   { Icon: Search, name: "Google Search Console", tag: "Kostenlos", text: "Direkte Daten zu Klicks, Impressionen, Rankings und technischen Problemen." },
-  { Icon: BarChart2, name: "Ahrefs", tag: "Profi-Tool", text: "Backlinks, Content-Gaps und Wettbewerber lassen sich damit präzise analysieren." },
-  { Icon: Globe, name: "PageSpeed Insights", tag: "Kostenlos", text: "Core Web Vitals und konkrete Performance-Probleme werden sichtbar." },
+  { Icon: BarChart2, name: "SEO-Crawler", tag: "Audit", text: "Crawls zeigen defekte Links, Weiterleitungen, Statuscodes, Meta-Daten und technische Muster auf größeren Websites." },
+  { Icon: Globe, name: "PageSpeed Insights", tag: "Performance", text: "Core Web Vitals und konkrete Ladezeitprobleme werden sichtbar, damit Technik gezielt verbessert werden kann." },
 ];
 
 const FAQ = [
   { q: "Wie lange dauert es, bis SEO wirkt?", a: "Erste Signale sind oft nach 3 bis 6 Monaten sichtbar. Spürbare Verbesserungen hängen von Wettbewerb, Technik, Content und Domain-Stärke ab." },
   { q: "Was ist der Unterschied zwischen SEO und SEA?", a: "SEO baut organische Sichtbarkeit auf. SEA sind bezahlte Anzeigen, die sofort sichtbar sein können, aber pro Klick Budget verbrauchen." },
-  { q: "Wie viele Keywords braucht eine Seite?", a: "Eine Seite sollte ein klares Hauptthema haben und mehrere semantisch passende Begriffe natürlich abdecken." },
-  { q: "Sind Backlinks wirklich wichtig?", a: "Für wettbewerbsstarke Begriffe ja. Für Long-Tail- und lokale Suchen können Struktur, Inhalte und lokale Signale bereits viel bewegen." },
-  { q: "Wie oft sollte man Inhalte aktualisieren?", a: "Wichtige Seiten sollten regelmäßig geprüft werden, besonders wenn sich Angebote, Wettbewerb oder Suchintention verändern." },
-  { q: "Was ist wichtiger: Technik, Content oder Links?", a: "Die Basis ist saubere Technik. Danach folgen starke Inhalte und anschließend Autorität durch Links, Erwähnungen und Vertrauen." },
+  { q: "Welche Bereiche gehören zu SEO?", a: "SEO besteht vor allem aus Technik, Content und Autorität. Dazu kommen lokale Signale, Nutzererfahrung, interne Verlinkung, Reporting und heute auch die Auffindbarkeit in KI-Suchen." },
+  { q: "Sind Backlinks wirklich wichtig?", a: "Für wettbewerbsstarke Begriffe ja. Entscheidend ist aber Qualität: thematisch passende Empfehlungen sind wertvoller als viele schwache oder künstliche Links." },
+  { q: "Wie oft sollte man Inhalte aktualisieren?", a: "Wichtige Seiten sollten regelmäßig geprüft werden, besonders wenn sich Angebote, Wettbewerb oder Suchintention verändern. Aktualität hilft, Inhalte relevant zu halten." },
+  { q: "Wie wichtig sind KI-Suchen für SEO?", a: "KI-Suchen nutzen klare, gut strukturierte und vertrauenswürdige Inhalte. Wer Themen verständlich erklärt, Quellenlogik berücksichtigt und technische Hürden reduziert, verbessert auch dort seine Chancen." },
+  { q: "Was kostet SEO?", a: "Die Kosten hängen von Wettbewerb, Website-Größe, technischem Zustand, Content-Bedarf und Ziel ab. Kleine Projekte brauchen weniger Aufwand, stark umkämpfte Märkte benötigen meist laufende Optimierung." },
+  { q: "Was ist wichtiger: Technik, Content oder Links?", a: "Die Reihenfolge ist pragmatisch: erst technische Basis und Crawlbarkeit, dann hilfreiche Inhalte, danach Autorität durch Links, Erwähnungen, Bewertungen und Vertrauen." },
 ];
 
 function BrandMark() {
@@ -215,22 +217,22 @@ export default function Page() {
                 <div className="serp-row active">
                   <span>01</span>
                   <div>
-                    <strong>Suchintention treffen</strong>
-                    <small>Inhalte beantworten die echte Nutzerfrage</small>
+                    <strong>Nutzerfrage verstehen</strong>
+                    <small>Inhalte passend zur Suche ausrichten</small>
                   </div>
                 </div>
                 <div className="serp-row">
                   <span>02</span>
                   <div>
-                    <strong>Interne Links ordnen</strong>
-                    <small>Wichtige Seiten gezielt weiterführen</small>
+                    <strong>Seitenstruktur verbessern</strong>
+                    <small>Wichtige Inhalte sinnvoll verbinden</small>
                   </div>
                 </div>
                 <div className="serp-row">
                   <span>03</span>
                   <div>
-                    <strong>Core Web Vitals stärken</strong>
-                    <small>Schnell, stabil und mobil nutzbar</small>
+                    <strong>Website schneller machen</strong>
+                    <small>Mobil, stabil und technisch sauber</small>
                   </div>
                 </div>
               </div>
