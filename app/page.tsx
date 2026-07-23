@@ -338,7 +338,7 @@ export default function Page() {
       <section id="optimierung" className="section split-section optimization-section left-heading-section">
         <div className="split-copy sticky-copy">
           <Eyebrow>On-Page SEO</Eyebrow>
-          <h2>Alles, was du direkt auf deiner Website steuern kannst.</h2>
+          <h2>Was du auf deiner Website steuerst.</h2>
           <p>
             On-Page SEO ordnet Texte, Meta-Daten, interne Links und Medien so, dass Nutzer
             und Suchmaschinen schnell verstehen, warum deine Seite relevant ist.
