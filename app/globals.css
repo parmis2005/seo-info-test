@@ -482,7 +482,7 @@ p {
 .desktop-nav {
   color: #f8fbffb8;
   justify-content: center;
-  gap: 26px;
+  gap: 20px;
   font-size: 0.95rem;
 }
 .desktop-nav a:hover,

@@ -22,7 +22,7 @@ import {
   Zap,
 } from "lucide-react";
 
-const NAV = ["Grundlagen", "Faktoren", "Optimierung", "Prozess", "Tools", "FAQ"];
+const NAV = ["Angebot", "Grundlagen", "Faktoren", "Optimierung", "Prozess", "Tools", "FAQ"];
 
 const FACTORS = [
   {
@@ -47,6 +47,29 @@ const BASICS = [
   { Icon: Target, title: "Suchintention treffen", text: "Gute SEO beantwortet exakt die Frage, mit der Nutzer auf Google starten." },
   { Icon: Trophy, title: "Vertrauen aufbauen", text: "Klare Inhalte, Technik und Signale machen aus Rankings echte Autorität." },
   { Icon: Coins, title: "Besserer ROI", text: "Organischer Traffic kann über Monate und Jahre wirtschaftlich arbeiten." },
+];
+
+const OFFER = [
+  {
+    Icon: ShieldCheck,
+    title: "SEO-Audit",
+    text: "Wir prüfen Technik, Inhalte, Wettbewerb und vorhandene Rankings. Daraus entsteht eine klare Prioritätenliste statt unübersichtlicher Einzelmaßnahmen.",
+  },
+  {
+    Icon: Layers,
+    title: "Website-Struktur",
+    text: "Wir ordnen Seiten, interne Links und Inhalte so, dass Nutzer schneller zum Ziel kommen und Suchmaschinen die Relevanz besser verstehen.",
+  },
+  {
+    Icon: PenLine,
+    title: "Content-Optimierung",
+    text: "Wir entwickeln Inhalte, Meta-Daten und Landingpages so weiter, dass sie Suchintention, Vertrauen und Anfragefokus verbinden.",
+  },
+  {
+    Icon: BarChart2,
+    title: "Messung & Betreuung",
+    text: "Wir machen Fortschritte über Rankings, Klicks, technische Signale und Anfragen sichtbar und leiten daraus die nächsten Schritte ab.",
+  },
 ];
 
 const SECONDARY_FACTORS = [
@@ -87,10 +110,10 @@ const ERRORS = [
 ];
 
 const PROCESS = [
-  { n: "01", title: "Analyse", text: "Keywords, Wettbewerb, Technik, bestehende Inhalte und lokale Chancen werden zuerst bewertet." },
-  { n: "02", title: "Technik & Struktur", text: "Crawlbarkeit, Ladezeit, interne Links und Seitenarchitektur schaffen die Basis für bessere Auffindbarkeit." },
-  { n: "03", title: "Content", text: "Texte, Landingpages und Ratgeber werden so aufgebaut, dass sie Nutzerfragen beantworten und semantisch klar sind." },
-  { n: "04", title: "Autorität & Messung", text: "Backlinks, Erwähnungen, Bewertungen und KPI-Tracking zeigen, ob die Maßnahmen tatsächlich Wirkung erzeugen." },
+  { n: "01", title: "Analyse", text: "Wir bewerten Keywords, Wettbewerb, Technik, bestehende Inhalte und lokale Chancen, bevor Maßnahmen priorisiert werden." },
+  { n: "02", title: "Technik & Struktur", text: "Wir verbessern Crawlbarkeit, Ladezeit, interne Links und Seitenarchitektur als Grundlage für bessere Auffindbarkeit." },
+  { n: "03", title: "Content", text: "Wir bauen Texte, Landingpages und Ratgeber so auf, dass sie Nutzerfragen beantworten und semantisch klar sind." },
+  { n: "04", title: "Autorität & Messung", text: "Wir prüfen Backlinks, Erwähnungen, Bewertungen und KPIs, damit Fortschritte sichtbar und nächste Schritte ableitbar werden." },
 ];
 
 const TOOLS = [
@@ -197,13 +220,13 @@ export default function Page() {
               <span />
               <span />
               <strong>SEO Leitfaden</strong>
-              <em>Ranking · Content · Technik</em>
+              <em>Analyse · Umsetzung · Betreuung</em>
             </div>
 
             {[
-              ["01", "Überblick", "Die wichtigsten SEO-Hebel verstehen"],
-              ["02", "Prioritäten", "Erkennen, was wirklich Wirkung hat"],
-              ["03", "Kontrolle", "Sichtbarkeit und Fortschritt messen"],
+              ["01", "Audit", "Potenziale und Probleme sichtbar machen"],
+              ["02", "Umsetzung", "Technik und Inhalte gezielt verbessern"],
+              ["03", "Betreuung", "Fortschritt messen und weiterentwickeln"],
             ].map(([step, title, text]) => (
               <div className="focus-row" key={step}>
                 <span>{step}</span>
@@ -216,14 +239,14 @@ export default function Page() {
           </div>
 
           <div className="hero-actions">
-            <a className="primary-button" href="#grundlagen">
-              Grundlagen ansehen
+            <a className="primary-button" href="#angebot">
+              Angebot ansehen
               <ArrowRight size={18} />
             </a>
-            <a className="secondary-button" href="#faktoren">Ranking-Faktoren</a>
+            <a className="secondary-button" href="#kontakt">Projekt anfragen</a>
           </div>
 
-          <p className="hero-note">Klarer Aufbau. Messbare Prioritäten. Kein SEO-Chaos.</p>
+          <p className="hero-note">SEO-Audit. Struktur. Content. Messbare Betreuung.</p>
         </div>
 
         <div className="hero-visual" aria-hidden="true">
@@ -311,13 +334,30 @@ export default function Page() {
         ))}
       </section>
 
+      <section id="angebot" className="section dark-band left-heading-section offer-section">
+        <SectionHeading
+          eyebrow="Unser Angebot"
+          title="Wir machen SEO verständlich, planbar und umsetzbar."
+          text="Die Informationen auf dieser Seite zeigen die wichtigsten SEO-Bereiche. Genau daraus entsteht unser Angebot: Wir analysieren, priorisieren, optimieren und messen, was deiner Website mehr Sichtbarkeit und qualifizierte Anfragen bringen kann."
+        />
+        <div className="service-grid four">
+          {OFFER.map(({ Icon, title, text }) => (
+            <article className="service-card compact-card" key={title}>
+              <Icon size={25} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="grundlagen" className="section split-section">
         <div className="split-copy">
           <Eyebrow>Was ist SEO?</Eyebrow>
           <h2>Organisch sichtbar werden, ohne jeden Klick zu bezahlen.</h2>
           <p>
             Suchmaschinenoptimierung verbindet technische Basis, klare Inhalte und Vertrauen.
-            So entsteht Sichtbarkeit, die Nutzer nicht nur erreicht, sondern in Anfragen verwandelt.
+            Diese Basis setzen wir so ein, dass Sichtbarkeit nicht nur Besucher erreicht, sondern auch passende Anfragen vorbereitet.
           </p>
         </div>
         <div className="feature-list">
@@ -337,7 +377,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="Ranking-Signale"
           title="Die Faktoren hinter guten Google-Positionen."
-          text="Google bewertet technische Qualität, hilfreiche Inhalte, Nutzererfahrung und Vertrauen. Wenn diese Bereiche sauber zusammenspielen, steigt die Chance, dass eine Seite sichtbar wird und relevante Besucher erreicht."
+          text="Google bewertet technische Qualität, hilfreiche Inhalte, Nutzererfahrung und Vertrauen. Wir ordnen diese Signale nach Wirkung, damit nicht beliebig optimiert wird, sondern dort, wo Sichtbarkeit und Anfragen realistisch wachsen können."
         />
         <div className="service-grid">
           {FACTORS.map(({ Icon, title, text }) => (
@@ -361,10 +401,10 @@ export default function Page() {
       <section id="optimierung" className="section split-section optimization-section left-heading-section">
         <div className="split-copy sticky-copy">
           <Eyebrow>On-Page SEO</Eyebrow>
-          <h2>Was du auf deiner Website steuerst.</h2>
+          <h2>Was wir direkt auf deiner Website optimieren.</h2>
           <p>
             On-Page SEO ordnet Texte, Meta-Daten, interne Links und Medien so, dass Nutzer
-            und Suchmaschinen schnell verstehen, warum deine Seite relevant ist.
+            und Suchmaschinen schnell verstehen, warum deine Seite relevant ist. Diese Bereiche lassen sich konkret planen, umsetzen und kontrollieren.
           </p>
         </div>
         <div className="timeline-list">
@@ -384,7 +424,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="Off-Page SEO"
           title="Autorität, die außerhalb deiner Website entsteht."
-          text="Vertrauen entsteht nicht nur auf deiner eigenen Website. Auch Empfehlungen, Erwähnungen, Bewertungen und lokale Signale zeigen Suchmaschinen, dass dein Angebot relevant und glaubwürdig ist."
+          text="Vertrauen entsteht nicht nur auf deiner eigenen Website. Wir berücksichtigen Empfehlungen, Erwähnungen, Bewertungen und lokale Signale, damit dein Angebot auch außerhalb der Website glaubwürdig wahrgenommen wird."
         />
         <div className="service-grid">
           {OFFPAGE.map(({ Icon, title, text }) => (
@@ -401,7 +441,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="SEO in der Praxis"
           title={"Ein System aus Analyse, Struktur und messbarer\u00a0Umsetzung."}
-          text="Professionelle SEO funktioniert nicht als Einmalmaßnahme, sondern als wiederholbarer Prozess."
+          text="Professionelle SEO funktioniert nicht als Einmalmaßnahme. Wir bauen einen wiederholbaren Prozess auf, der Analyse, Umsetzung und Auswertung verbindet."
         />
         <div className="service-grid four">
           {PRACTICE.map(({ Icon, title, text }) => (
@@ -418,7 +458,7 @@ export default function Page() {
         <SectionHeading
           eyebrow="Häufige Fehler"
           title={"Was gute Rankings unnötig\u00a0ausbremst."}
-          text="Viele SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Prioritäten."
+          text="Viele SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Prioritäten. Deshalb beginnt unsere Arbeit mit einer sauberen Einordnung der wichtigsten Hebel."
         />
         <div className="service-grid four">
           {ERRORS.map(({ Icon, title, text }) => (
@@ -432,7 +472,7 @@ export default function Page() {
       </section>
 
       <section id="prozess" className="section process-section">
-        <SectionHeading eyebrow="Prozess" title="Vier Schritte bis zur sichtbaren SEO-Struktur." compact />
+        <SectionHeading eyebrow="Prozess" title="Unser Ablauf bis zur sichtbaren SEO-Struktur." compact />
         <div className="process-grid">
           {PROCESS.map((step) => (
             <article className="process-step" key={step.n}>
@@ -445,7 +485,7 @@ export default function Page() {
       </section>
 
       <section id="tools" className="section packages-section">
-        <SectionHeading eyebrow="Tools" title="Software, die Entscheidungen messbar macht." compact />
+        <SectionHeading eyebrow="Tools" title="Software, mit der wir Entscheidungen messbar machen." compact />
         <div className="package-grid">
           {TOOLS.map(({ Icon, name, tag, text, detail }) => (
             <article className="package-card" key={name}>
@@ -487,8 +527,7 @@ export default function Page() {
           <Eyebrow>Projekt anfragen</Eyebrow>
           <h2>Bereit für mehr Sichtbarkeit und klare SEO-Prioritäten?</h2>
           <p>
-            Starte mit einer sauberen Analyse, einer verständlichen Seitenstruktur und Inhalten,
-            die Ranking, Vertrauen und Anfragefokus verbinden.
+            Wenn du SEO nicht nur verstehen, sondern konkret umsetzen möchtest, starten wir mit einer sauberen Analyse, einer verständlichen Seitenstruktur und Inhalten mit Anfragefokus.
           </p>
         </div>
         <div className="contact-card">
@@ -512,7 +551,7 @@ export default function Page() {
               <BrandMark />
               <span className="brand-copy">SEOGUIDE</span>
             </span>
-            <span>SEO, Google-Ranking und klare Website-Strukturen im DigitalVision-Look.</span>
+            <span>SEO-Audit, Website-Struktur und Content-Optimierung für messbare Sichtbarkeit.</span>
           </div>
           <a className="footer-back-to-top" href="#top">
             <Search size={16} />
