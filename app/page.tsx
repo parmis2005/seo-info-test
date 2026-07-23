@@ -183,9 +183,9 @@ export default function Page() {
             </div>
 
             {[
-              ["01", "Suchintention", "Nutzerfrage präzise beantworten"],
-              ["02", "Struktur", "Inhalte sinnvoll verbinden"],
-              ["03", "Technik", "Schnell und sauber auffindbar"],
+              ["01", "Überblick", "Die wichtigsten SEO-Hebel verstehen"],
+              ["02", "Prioritäten", "Erkennen, was wirklich Wirkung hat"],
+              ["03", "Kontrolle", "Sichtbarkeit und Fortschritt messen"],
             ].map(([step, title, text]) => (
               <div className="focus-row" key={step}>
                 <span>{step}</span>
