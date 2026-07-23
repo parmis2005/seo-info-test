@@ -1001,6 +1001,18 @@ p {
 .left-heading-section .split-copy {
   max-width: 760px;
 }
+.practice-heading-section .section-heading {
+  grid-template-columns: minmax(0, 1120px);
+}
+.practice-heading-section .section-heading h2 {
+  max-width: 1120px;
+}
+.error-heading-section .section-heading {
+  grid-template-columns: minmax(0, 1040px);
+}
+.error-heading-section .section-heading h2 {
+  max-width: 1040px;
+}
 .left-heading-section .split-copy {
   justify-self: start;
 }

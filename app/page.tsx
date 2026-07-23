@@ -374,10 +374,10 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section left-heading-section">
+      <section className="section left-heading-section practice-heading-section">
         <SectionHeading
           eyebrow="SEO in der Praxis"
-          title="Ein System aus Analyse, Struktur und messbarer Umsetzung."
+          title={"Ein System aus Analyse, Struktur und messbarer\u00a0Umsetzung."}
           text="Professionelle SEO funktioniert nicht als Einmalmaßnahme, sondern als wiederholbarer Prozess."
         />
         <div className="service-grid four">
@@ -391,10 +391,10 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section dark-band left-heading-section">
+      <section className="section dark-band left-heading-section error-heading-section">
         <SectionHeading
           eyebrow="Häufige Fehler"
-          title="Was gute Rankings unnötig ausbremst."
+          title={"Was gute Rankings unnötig\u00a0ausbremst."}
           text="Viele SEO-Probleme entstehen nicht durch fehlende Tools, sondern durch unklare Prioritäten."
         />
         <div className="service-grid four">
