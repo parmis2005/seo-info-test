@@ -519,23 +519,40 @@ p {
   display: grid;
 }
 .hero-branding {
-  gap: 10px;
-  width: fit-content;
-  max-width: 100%;
-  margin-bottom: 32px;
-  justify-items: start;
-  display: grid;
+  width: min(100%, 560px);
+  margin-bottom: 26px;
+  padding: 12px 14px;
+  background: #0811269e;
+  border: 1px solid #9be4ff24;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  display: flex;
+  box-shadow: inset 0 1px #ffffff0f;
 }
 .hero-wordmark {
-  font-size: clamp(2.85rem, 5.6vw, 4.3rem);
+  color: #061023;
+  background: linear-gradient(135deg, #f5fbff, #9be4ff);
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  border-radius: 999px;
+  flex: none;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-shadow: none;
 }
 .hero-tagline {
-  color: var(--cyan);
+  flex: 1;
+  min-width: 220px;
+  color: #d8edf7;
   text-align: left;
   text-transform: uppercase;
-  font-size: 1.02rem;
+  font-size: 0.74rem;
   font-weight: 850;
-  line-height: 1.35;
+  line-height: 1.25;
 }
 .hero-statement {
   gap: 12px;
@@ -577,7 +594,8 @@ p {
   line-height: 1.35;
 }
 .hero-statement h1 {
-  font-size: clamp(2rem, 3.8vw, 3rem);
+  max-width: 720px;
+  font-size: clamp(2.25rem, 4.3vw, 3.65rem);
   line-height: 1.14;
   padding-bottom: 0.08em;
 }
@@ -1388,7 +1406,7 @@ p {
     padding-left: 0;
   }
   .hero-branding {
-    justify-items: center;
+    justify-content: center;
   }
   .hero-tagline {
     text-align: center;
@@ -1458,10 +1476,10 @@ p {
     max-width: 358px;
   }
   .hero-wordmark {
-    font-size: 2.15rem;
+    font-size: 0.76rem;
   }
   .hero-tagline {
-    font-size: 0.9rem;
+    font-size: 0.68rem;
   }
   .hero-statement h1,
   .hero-statement p {
