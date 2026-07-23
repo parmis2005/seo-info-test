@@ -159,8 +159,8 @@ export default function Page() {
           ))}
         </nav>
 
-        <a className="header-cta" href="#prozess">
-          Fahrplan starten
+        <a className="header-cta" href="#kontakt">
+          Projekt anfragen
           <ArrowRight size={17} />
         </a>
       </header>
@@ -459,7 +459,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="contact-section">
+      <section id="kontakt" className="contact-section">
         <div>
           <Eyebrow>Projekt anfragen</Eyebrow>
           <h2>Bereit für mehr Sichtbarkeit und klare SEO-Prioritäten?</h2>
